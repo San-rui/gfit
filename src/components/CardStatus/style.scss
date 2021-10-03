@@ -1,0 +1,25 @@
+$tertiary: #219ebc;
+$primary: #219ebc;
+$secondary: #023047;
+$quaternary: #ffb703;
+$quinary: #fb8500;
+
+
+.card-status{
+    display: flex;
+    justify-content:space-between;
+    margin-top: 1rem;
+
+    .status{
+        width: 32%;
+
+        h2{
+            background-color: $secondary;
+            color: $quaternary;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+        }
+    }
+
+}
