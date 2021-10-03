@@ -1,0 +1,49 @@
+$tertiary: #219ebc;
+$primary: #219ebc;
+$secondary: #023047;
+$quaternary: #ffb703;
+$quinary: #fb8500;
+
+.card-food{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    background-color: $tertiary;
+    padding: 2%;
+    border-radius: 1rem;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    margin-bottom: 5%;
+
+
+    .titile-food{
+        background-color: $quaternary;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+
+    }
+
+    .week{
+        text-align: center;
+    }
+
+    .days{
+        display: flex;
+        background-color: $quaternary;
+        justify-content:space-between;
+        border-radius: 0.5rem;
+        padding: 1%;
+    }
+
+    .food{
+        background-color:$quinary;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+
+        h4{
+            text-align: center;
+        }
+    }
+}

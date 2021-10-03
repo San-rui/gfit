@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
+
+body{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+//-----VARIABLES------
+
+
+$primary: #f94144;
+$secondary: #f3722c;
+$tertiary: #f8961e;
+$quaternary: #f8961e;
+$quinary: #90be6d;
+$six: #43aa8b;
+$seven: #577590;

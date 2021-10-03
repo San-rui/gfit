@@ -1,0 +1,14 @@
+$tertiary: #219ebc;
+$primary: #219ebc;
+$secondary: #023047;
+$quaternary: #ffb703;
+$quinary: #fb8500;
+
+.main-primary{
+    background-color: $quaternary;
+    display: flex;
+    flex-direction: column;
+    padding:2% 15%;
+    align-items: center;
+    margin-top: 100px;
+}

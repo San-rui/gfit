@@ -1,0 +1,7 @@
+export { Nav } from './Nav'
+export { Header } from './Header'
+export { Main } from './Main'
+export { CardFood } from './CardFood'
+export { CardStatus } from './CardStatus'
+export { CardSport} from './CardSport'
+export { Profile } from './Profile'
