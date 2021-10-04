@@ -1,11 +1,14 @@
-$tertiary: #219ebc;
-$primary: #219ebc;
-$secondary: #023047;
-$quaternary: #ffb703;
-$quinary: #fb8500;
+
+$primary-petrol: #1D5668;
+$primary-red: #FF665A;
+$primary-yellow: #FFF587;
+$primary-blue: #007397;
+$primary-aqua: #DEEAF5;
+$white-color: #FFFF;
+$secondary-green: #BACCCD;
 
 .main-primary{
-    background-color: $quaternary;
+    background-color: $primary-aqua;
     display: flex;
     flex-direction: column;
     padding:2% 15%;

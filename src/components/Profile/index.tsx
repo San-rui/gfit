@@ -1,11 +1,11 @@
 import './style.scss'
-import man from '../../assets/images/man.png'
+import woman from '../../assets/images/woman.png'
 
 const Profile = () =>{
 
     return (
         <div className="Profile">
-            <img src={man} alt=""/>
+            <img src={woman} alt=""/>
             <h2>Sandra</h2>
             <div className="profile-info">
                 <div className="info">
