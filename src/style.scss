@@ -6,6 +6,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
 
+$primary-petrol: #1D5668;
+$primary-red: #FF665A;
+$primary-yellow: #FFF587;
+$primary-blue: #007397;
+$primary-aqua: #DEEAF5;
+$white-color: #FFFF;
+$secondary-green: #BACCCD;
+
 body{
     font-family: 'Open Sans Condensed', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: $primary-aqua;
 }

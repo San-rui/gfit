@@ -32,11 +32,13 @@ $white-color: #FFFF;
             margin-left: 120px;
             color:$primary-aqua;
             cursor: pointer;
+            transition-duration: 0.3s;
 
         }
 
         li:hover{
-            color:$white-color;
+            color:$white-color
+            ;transition-duration: 0.3s;
         }
 
         img{

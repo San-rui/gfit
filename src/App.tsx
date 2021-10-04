@@ -1,11 +1,12 @@
 import { Login } from "./pages"
 import { Dashboard } from './pages'
+import { SingUp } from './pages'
 import './style.scss'
 
 function App() {
   return (
     <div className="App">
-      <Dashboard/>
+      <Dashboard />
     </div>
   );
 }
