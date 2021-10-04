@@ -1,21 +1,21 @@
-$tertiary: #219ebc;
-$primary: #219ebc;
-$secondary: #023047;
-$quaternary: #ffb703;
-$quinary: #fb8500;
 
+$primary-petrol: #1D5668;
+$primary-red: #CC3E53;
+$primary-yellow: #FED51C;
+$primary-blue: #007397;
+$primary-aqua: #DEEAF5;
+$white-color: #FFFF;
 
 .header-primary{
     width: 100%;
     height: 100px;
-    background-color:$secondary; 
+    background-color:$primary-blue; 
     display:flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 5%;
     font-weight: 700;
     font-size: 20px;
-    cursor: pointer;
     position: fixed;
     top:0;
     left:0;
@@ -30,12 +30,13 @@ $quinary: #fb8500;
 
         li{
             margin-left: 120px;
-            color:$quaternary;
+            color:$primary-aqua;
+            cursor: pointer;
 
         }
 
         li:hover{
-            color:$quinary;
+            color:$white-color;
         }
 
         img{

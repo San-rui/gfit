@@ -1,5 +1,5 @@
 import './style.scss'
-import man from '../../assets/images/man.png'
+import woman from '../../assets/images/woman.png'
 import sport from '../../assets/images/sport.png'
 import diet from '../../assets/images/diet.png'
 
@@ -9,7 +9,7 @@ const Header = () => {
         <div className="header-primary">
             <ul>
                 <li>
-                    <img src={man} alt=""/>
+                    <img src={woman} alt=""/>
                     <a>Mi Perfil</a>
                 </li>
                 <li>
