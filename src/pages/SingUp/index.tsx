@@ -15,6 +15,10 @@ const SingUp = () => {
             <form action="" onSubmit={handleSubmit}>
                 <h2>Registrate</h2>
                 <div>
+                    <label htmlFor="name">Nombre</label>
+                    <input id="name" type="text" name="email" placeholder="Ingresa tu nombre"/>
+                </div>
+                <div>
                     <label htmlFor="email">Email</label>
                     <input id="email" type="text" name="email" placeholder="Ingresa tu email"/>
                 </div>
@@ -24,10 +28,10 @@ const SingUp = () => {
                 </div>
                 <div>
                     <label htmlFor="sex">Sexo</label>
-                    <select name="sex" id="sex">
+                    <select name="gender" id="gender">
                     <option value="" selected disabled>Ingresa tu sexo</option>
-                        <option value="">Femenino</option>
-                        <option value="">Masculino</option>
+                        <option value="">Hombre</option>
+                        <option value="">Mujer</option>
                     </select>
                 </div>
                 <div>

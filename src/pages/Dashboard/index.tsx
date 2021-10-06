@@ -1,6 +1,4 @@
-import React from 'react'
-import { Header } from '../../components'
-import { Main } from '../../components'
+import { Header, Main } from '../../components'
 
 const Dashboard= () => {
 
