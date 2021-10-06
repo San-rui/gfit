@@ -45,7 +45,7 @@ function createData(
 
         
     return { id, name, email, password, gender, age, weight, height };
-}
+};
 
 
 
