@@ -1,12 +1,14 @@
-import { Login } from "./pages"
-import { Dashboard } from './pages'
-import { SingUp } from './pages'
+import { Login, Dashboard, SingUp, Users } from "./pages";
+import { CustomizedTables } from '../src/components'
 import './style.scss'
 
 function App() {
+
   return (
     <div className="App">
-      <Dashboard />
+      <Users />
+      <CustomizedTables/>
+
     </div>
   );
 }
