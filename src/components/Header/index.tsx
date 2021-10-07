@@ -1,3 +1,4 @@
+import '../../scss/variables.scss'
 import './style.scss'
 import woman from '../../assets/images/woman.png'
 import sport from '../../assets/images/sport.png'

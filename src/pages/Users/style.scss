@@ -1,0 +1,51 @@
+$primary-petrol: #1D5668;
+$primary-red: #FF665A;
+$primary-yellow: #FFF587;
+$primary-blue: #007397;
+$primary-aqua: #DEEAF5;
+$white-color: #FFFF;
+$secondary-green: #BACCCD;
+
+.users{
+    margin: 15% 0%;
+    overflow-x: auto;
+
+    h2{
+        font-size: 2rem;
+        color: $primary-petrol;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    table{
+        border-collapse: collapse;
+
+        thead{
+            
+            tr{
+                th{
+                    height: 1rem;
+                    padding:1rem; 
+                    background-color: $primary-yellow;
+                    color: $primary-petrol;
+                    
+                }
+            }
+            
+        }
+
+        tbody{
+            background-color: $secondary-green;
+            tr:nth-child(even){
+                background-color: #f2f2f2;
+            }
+            td{
+                height: 2rem;
+                padding: 0.5rem;
+                text-align: center;
+            }
+        }
+
+
+    }
+}

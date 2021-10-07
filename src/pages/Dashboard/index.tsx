@@ -6,7 +6,6 @@ const Dashboard= () => {
         <div>
             <Header/>
             <Main/>
-
         </div>
 
     )
