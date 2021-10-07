@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {getUsers} from '../../api';
 import { User } from '../../types';
+import './style.scss'
 
 const Users =()=>{
 
@@ -19,7 +20,8 @@ const Users =()=>{
     (!users)? ObteinUsers(): console.log("estos son los users", users)
 
     return(
-        <div>
+        <div className='users'>
+            <h2>Users information</h2>
             <table>
                 <thead>
                     <tr>
