@@ -17,7 +17,7 @@ const Users =()=>{
         }
         
     }
-    (!users)? ObteinUsers(): console.log("estos son los users", users)
+    (!users)? ObteinUsers(): console.log(users);
 
     return(
         <div className='users'>

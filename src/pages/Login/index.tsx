@@ -1,17 +1,17 @@
 import './style.scss'
-import {FormEvent } from "react"
-import { useAuth } from "../../hooks"
+import { FormEvent } from "react"
+import { useState } from 'react'
 
 
 const Login = () => {
 
-    const { login } = useAuth();
 
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
         console.log("el evento reacciono");
     }
 
+    
 
     return (
         <div className="login">
@@ -23,7 +23,7 @@ const Login = () => {
                 </div>
                 <div>
                     <label htmlFor="password">Contraseña</label>
-                    <input id="password" type="text" name="pass" placeholder="Ingrese su contraseña"/>
+                    <input id="password" type="text" name="password" placeholder="Ingrese su contraseña"/>
                 </div>
                 <button type="submit">Enviar</button>
             </form>
