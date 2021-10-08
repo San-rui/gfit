@@ -7,7 +7,7 @@ const Users =()=>{
 
     const [users, setUsers]= useState<User[] | undefined>()
 
-    const ObteinUsers = async() =>{
+    const ObtainUsers = async() =>{
         try{ 
             const response = await getUsers(); 
             setUsers(response);
@@ -17,7 +17,7 @@ const Users =()=>{
         }
         
     }
-    (!users)? ObteinUsers(): console.log(users);
+    (!users)? ObtainUsers(): console.log(users);
 
     return(
         <div className='users'>

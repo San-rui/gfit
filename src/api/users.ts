@@ -12,7 +12,7 @@ const mapToArray = (object: any)=>{
         ...object[elem],
     });
     }
-    console.log("este es mi array", array)
+
     return array;
 }
 
