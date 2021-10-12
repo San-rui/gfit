@@ -13,7 +13,6 @@ type Payload ={
 const signup = async (data: Payload) =>{
 
     await api.post('/users.json', data);
-
 }
 
-export { signup}
+export { signup }
