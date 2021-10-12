@@ -1,143 +1,173 @@
+import { food } from '../CardFood/api'
+import { useState, useEffect } from 'react'
+import {Branded} from '../../types'
 import './style.scss'
+
+
 
 const CardFood = () =>{
 
+    const [meal, setMeal]= useState<Branded[]>()
+    const [search, setSearch]=useState('')
+
+
+
+    useEffect (  () => {
+        food(search).then(response=>{
+            setMeal(response)
+        })
+    }, [search])
+    
     return (
         <div>
-            <h2 className="titile-food">Comidad</h2>
+            <h2 className="titile-food">Weekly Meal</h2>
                 <div>
-                    <h3 className="week">Semana</h3>
+                    <h3 className="week">Week</h3>
+                    <input id="food" 
+                        type="text" name="food" 
+                        placeholder="Que vas a comer?" 
+                        onChange={e =>{ 
+                            setSearch( e.target.value)
+                        }}
+                    />
+                    <select name="food-added" id="food-added">
+                        {
+                            meal?.map(item =>{
+                                return <option>{item.food_name}</option>
+                            })
+                        }
+                    </select>
                     <div className="days">
                         <div className="food">
-                            <h4>Lunes</h4>
+                            <h4>Monday</h4>
                             <div>
-                                <h5>Desayuno</h5>
+                                <h5>Breakfast</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Almuerzo</h5>
+                                <h5>Lunch</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Merienda</h5>
+                                <h5>Afternoon snack</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Cena</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Martes</h4>
-                            <div>
-                                <h5>Desayuno</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Almuerzo</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Merienda</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Cena</h5>
+                                <h5>Diner</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="food">
-                            <h4>Miercoles</h4>
+                            <h4>Tuesday</h4>
                             <div>
-                                <h5>Desayuno</h5>
+                                <h5>Breakfast</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Almuerzo</h5>
+                                <h5>Lunch</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Merienda</h5>
+                                <h5>Afternoon snack</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Cena</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Jueves</h4>
-                            <div>
-                                <h5>Desayuno</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Almuerzo</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Merienda</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Cena</h5>
+                                <h5>Diner</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="food">
-                            <h4>Viernes</h4>
+                            <h4>Wednesday</h4>
                             <div>
-                                <h5>Desayuno</h5>
+                                <h5>Breakfast</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Almuerzo</h5>
+                                <h5>Lunch</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Merienda</h5>
+                                <h5>Afternoon snack</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Cena</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Sábado</h4>
-                            <div>
-                                <h5>Desayuno</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Almuerzo</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Merienda</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Cena</h5>
+                                <h5>Diner</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="food">
-                            <h4>Domingo</h4>
+                            <h4>Thursday</h4>
                             <div>
-                                <h5>Desayuno</h5>
+                                <h5>Breakfast</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Almuerzo</h5>
+                                <h5>Lunch</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Merienda</h5>
+                                <h5>Afternoon snack</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                             <div>
-                                <h5>Cena</h5>
+                                <h5>Diner</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                        <div className="food">
+                            <h4>Friday</h4>
+                            <div>
+                                <h5>Breakfast</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Lunch</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Afternoon snack</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Diner</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                        <div className="food">
+                            <h4>Saturday</h4>
+                            <div>
+                                <h5>Breakfast</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Lunch</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Afternoon snack</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Diner</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </div>
+                        <div className="food">
+                            <h4>Sunday</h4>
+                            <div>
+                                <h5>Breakfast</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Lunch</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Afternoon snack</h5>
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div>
+                                <h5>Diner</h5>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>

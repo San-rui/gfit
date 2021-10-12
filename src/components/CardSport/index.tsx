@@ -1,7 +1,29 @@
 import './style.scss'
+import {trainingApi} from './api'
+import { useState } from 'react'
+import { Activity} from '../../types'
+
+
 
 const CardSport = () =>{
 
+    const [training, setTraining]= useState<Activity | undefined>();
+
+    const getTraining = async() =>{
+        try{ 
+            const response: any = await trainingApi(); 
+            setTraining(response);
+        
+            
+        } catch(err){
+            console.log(err);
+        }
+        
+    }
+
+    (!training)? getTraining(): console.log("TRAINING", training);
+
+    
     return (
         <div>
             <h2 className="titile-sport">Entrenamiento</h2>
@@ -52,6 +74,9 @@ const CardSport = () =>{
                         </div>
                     </div>
                 </div>
+                <select name="trainingOptions" id="trainingOptions">
+
+                </select>
         </div>
     )
 
