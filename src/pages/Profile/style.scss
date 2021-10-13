@@ -1,14 +1,8 @@
+@import '../../scss/variables.scss';
 
-$primary-petrol: #1D5668;
-$primary-red: #FF665A;
-$primary-yellow: #FFF587;
-$primary-blue: #007397;
-$primary-aqua: #DEEAF5;
-$white-color: #FFFF;
-$secondary-green: #BACCCD;
 
 .Profile{
-    width: 100%;
+    width: 50rem;
     display: flex;
     flex-direction:column;
     justify-content:center;
@@ -20,6 +14,8 @@ $secondary-green: #BACCCD;
     padding: 2%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     margin-bottom: 5%;
+    padding:5% 5%;
+    margin-top: 150px; 
 
     img{
         background-color: $primary-aqua;

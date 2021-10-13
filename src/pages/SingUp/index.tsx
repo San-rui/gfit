@@ -1,6 +1,9 @@
-import './style.scss'
-import {FormEvent, useState, FC } from "react"
-import { signup } from './api'
+import { FormEvent, useState, FC } from "react";
+import React from 'react'
+import { signup } from './api';
+import { Layout } from '../../components/layout'
+
+import './style.scss';
 
 
 const SingUp :FC = () => {
@@ -24,14 +27,15 @@ const SingUp :FC = () => {
 
 
     return (
-        <div className="sing-up">
+        <Layout hidenHeader>
+            <div className="sing-up">
             <form action="" onSubmit={handleSubmit}>
-                <h2>Registrate</h2>
+                <h2>Sing Up</h2>
                 <div>
-                    <label htmlFor="name">Nombre</label>
+                    <label htmlFor="name">Name</label>
                     <input id="name" 
                         type="name" name="name" 
-                        placeholder="Ingresa tu nombre" 
+                        placeholder="Enter your name" 
                         onChange={e =>{ 
                             setName( e.target.value)
                         }}
@@ -44,7 +48,7 @@ const SingUp :FC = () => {
                         id="email" 
                         type="email" 
                         name="email" 
-                        placeholder="Ingresa tu email"
+                        placeholder="Enter your email"
                         onChange={e =>{ 
                             setEmail( e.target.value)
                         }}
@@ -52,12 +56,12 @@ const SingUp :FC = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Contraseña</label>
+                    <label htmlFor="password">Password</label>
                     <input 
                         id="password" 
                         type="password" 
                         name="password" 
-                        placeholder="Ingresa tu contraseña"
+                        placeholder="Enter your password"
                         onChange={e =>{ 
                             setPassword(e.target.value)
                         }}
@@ -65,22 +69,22 @@ const SingUp :FC = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="sex">Sexo</label>
+                    <label htmlFor="sex">Gender</label>
                     <select name="gender" id="gender" onChange={e =>{ 
                             setGender( e.target.value)
                         } } required>
-                    <option value="" selected disabled>Ingresa tu sexo</option>
-                        <option value="man">Hombre</option>
-                        <option value="woman">Mujer</option>
+                    <option value="" selected disabled>Enter your gender</option>
+                        <option value="man">Male</option>
+                        <option value="woman">Female</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="age">Edad</label>
+                    <label htmlFor="age">Age</label>
                     <input 
                         id="age"  
                         type="number"  
                         name="age" 
-                        placeholder="Ingresa tu edad"
+                        placeholder="Enter your age"
                         onChange={e =>{ 
                             setAge(Number(e.target.value))
                         }}
@@ -88,12 +92,12 @@ const SingUp :FC = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="weight">Peso en Kg</label>
+                    <label htmlFor="weight">Weight in Kg</label>
                     <input 
                         id="weight"  
                         type="number"  
                         name="weight" 
-                        placeholder="Ingresa tu peso en Kg"
+                        placeholder="Enter your weight in Kg"
                         onChange={e =>{ 
                             setWeight(Number(e.target.value))
                         }}
@@ -101,22 +105,23 @@ const SingUp :FC = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="height">Altura en CM</label>
+                    <label htmlFor="height">Height in CM</label>
                     <input 
                         id="height"  
                         type="number"  
                         name="height" 
-                        placeholder="Ingresa tu altura en CM"
+                        placeholder="IEnter your height in cm"
                         onChange={e =>{ 
                             setHeight( Number(e.target.value))
                         }}
                         required
                     />
                 </div>
-                <button type="submit">Registrarse</button>
+                <button type="submit">Sing up</button>
             </form>
         </div>
 
+        </Layout>
     )
 
 }

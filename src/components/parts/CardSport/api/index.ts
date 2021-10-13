@@ -1,5 +1,5 @@
-import { Activity } from '../../../types'
-import { apiTraining } from '../../../utils'
+import { Activity } from '../../../../types'
+import { apiTraining } from '../../../../utils'
 
 type Response ={
     data: Activity[]

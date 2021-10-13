@@ -1,12 +1,24 @@
-import { Login, Dashboard, SingUp, Users } from "./pages";
-import './scss/style.scss'
+import { Login, Dashboard, SingUp, Users, Profile } from "./pages";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import './scss/variables.scss';
+import './scss/style.scss';
 
 function App() {
 
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/login" component={Login} />
+          <Route path="/users/add" component={SingUp} />
+          <Route path="/users" component={Users} exact />
+          <Route path="/" component={Dashboard} />
+        </Switch>
+      </BrowserRouter>
+    </>
+    
   );
 }
 

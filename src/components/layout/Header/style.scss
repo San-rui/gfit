@@ -1,17 +1,10 @@
-
-$primary-petrol: #1D5668;
-$primary-red: #CC3E53;
-$primary-yellow: #FED51C;
-$primary-blue: #007397;
-$primary-aqua: #DEEAF5;
-$white-color: #FFFF;
-
+@import '../../../scss/variables.scss';
 
 
 .header-primary{
     width: 100%;
     height: 100px;
-    background-color:$primary-blue; 
+    background-color:$white-color; 
     display:flex;
     justify-content: flex-end;
     align-items: center;

@@ -1,6 +1,6 @@
-export { Header } from './Header'
-export { Main } from './Main'
-export { CardFood } from './CardFood'
-export { CardStatus } from './CardStatus'
-export { CardSport} from './CardSport'
-export { Profile } from './Profile'
+export { Header } from './layout'
+export { Main } from './layout'
+export { CardFood } from './parts'
+export { CardStatus } from './parts'
+export { CardSport} from './parts'
+

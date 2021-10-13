@@ -1,13 +1,6 @@
+@import '../../../scss/variables.scss';
 
-$primary-petrol: #1D5668;
-$primary-red: #FF665A;
-$primary-yellow: #FFF587;
-$primary-blue: #007397;
-$primary-aqua: #DEEAF5;
-$white-color: #FFFF;
-$secondary-green: #BACCCD;
-
-.card-sport{
+.card-food{
     display: flex;
     flex-direction:column;
     justify-content: center;
@@ -18,9 +11,10 @@ $secondary-green: #BACCCD;
     margin-bottom: 5%;
 
 
-    .titile-sport{
+    .titile-food{
+        font-size: 2rem;
         background-color: $primary-petrol;
-        color:$primary-aqua;
+        color: $primary-aqua;
         width: 100%;
         text-align: center;
         padding: 0.5rem;
@@ -41,17 +35,20 @@ $secondary-green: #BACCCD;
         justify-content:space-between;
         border-radius: 0.5rem;
         padding: 1%;
+
     }
 
-    .sport{
+    .food{
         background-color:$primary-aqua;
         color:$primary-petrol;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         border-radius: 0.5rem;
         padding: 0.5rem;
         margin: 0.2rem;
 
         h4{
             text-align: center;
+            font-size: 1.2rem;
         }
     }
 }

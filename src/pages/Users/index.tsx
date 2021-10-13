@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import {getUsers} from '../../api';
 import { User } from '../../types';
+import { Layout } from '../../components/layout'
+
 import './style.scss'
 
-const Users =()=>{
+const Users:FC =()=>{
 
     const [users, setUsers]= useState<User[] | undefined>()
 
@@ -20,7 +22,8 @@ const Users =()=>{
     (!users)? ObtainUsers(): console.log(users);
 
     return(
-        <div className='users'>
+        <Layout>
+            <div className='users'>
             <h2>Users information</h2>
             <table>
                 <thead>
@@ -56,6 +59,8 @@ const Users =()=>{
                 </tbody>
             </table>
         </div>
+        </Layout>
+        
     )
 }
 
