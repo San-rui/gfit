@@ -1,11 +1,13 @@
-import './style.scss'
-import { FormEvent } from "react"
-import { useState } from 'react'
-import { getUsers } from '../../api'
-import { User } from '../../types'
+import './style.scss';
+
+import { FormEvent, FC, useState } from "react";
+import { getUsers } from '../../api';
+import { User } from '../../types';
+import { Layout } from '../../components/layout'
 
 
-const Login = () => {
+
+const Login :FC= () => {
 
     const [ email, setEmail ] = useState <string>('');
     const [ password, setPassword] = useState <string>('');
@@ -35,46 +37,49 @@ const Login = () => {
     
 
     return (
-        <div className="login">
-            <form action="" onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input 
-                        id="email" 
-                        type="text" 
-                        name="email" 
-                        placeholder="Ingrese su email"
-                        onChange={e =>{ 
-                            setEmail( e.target.value)
-                        }}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Contraseña</label>
-                    <input 
-                        id="password" 
-                        type="text" 
-                        name="password" 
-                        placeholder="Ingrese su contraseña"
-                        onChange={e =>{ 
-                            setPassword(e.target.value)
-                        }}
-                        required
-                    />
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
-            <a href="">Registrarse</a>
+        <Layout hidenHeader>
+            <div className="login">
+                <form action="" onSubmit={handleSubmit}>
+                    <h2>Login</h2>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input 
+                            id="email" 
+                            type="text" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            onChange={e =>{ 
+                                setEmail( e.target.value)
+                            }}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            id="password" 
+                            type="text" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            onChange={e =>{ 
+                                setPassword(e.target.value)
+                            }}
+                            required
+                        />
+                    </div>
+                    <button type="submit">Send</button>
+                </form>
+                <a href="">Sing up</a>
+            </div>
+            
             <p>LOS DATOS INGRESADOS PERTENECEN A: {userLogged?.map(user=>{
                             return (
                                 
                                     <span>{user.name}</span>
                                 
                             )
-                        })}</p>
-        </div>
+            })}</p>
+        </Layout>
     )
 }
 

@@ -1,6 +1,7 @@
-import { apiFood } from '../../../utils'
-import { Branded } from '../../../types'
-import { Common } from '../../../types'
+import { apiFood } from '../../../../utils'
+import { Branded } from '../../../../types'
+import { Common } from '../../../../types'
+
 
 type Response ={
     data: {

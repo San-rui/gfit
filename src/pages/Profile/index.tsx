@@ -1,33 +1,36 @@
+import woman from '../../assets/images/woman.png';
+import { Layout } from '../../components/layout'
+
 import './style.scss'
-import woman from '../../assets/images/woman.png'
 
 const Profile = () =>{
 
     return (
-        <div className="Profile">
+        <Layout>
+            <div className="Profile">
             <img src={woman} alt=""/>
             <h2>Sandra</h2>
             <div className="profile-info">
                 <div className="info">
-                    <p>Sexo</p>
-                    <p>Femenino</p>
+                    <p>Gender</p>
+                    <p>Female</p>
                 </div>
                 <div className="info">
-                    <p>Edad</p>
+                    <p>Age</p>
                     <p>38</p>
                 </div>
                 <div className="info">
-                    <p>Peso en Kg</p>
+                    <p>Weight in Kg</p>
                     <p>58</p>
                 </div>
                 <div className="info">
-                    <p>Altura en Cm</p>
+                    <p>Height in Cm</p>
                     <p>171</p>
                 </div>
                 
             </div>
-
         </div>
+        </Layout>
     )
 
 }

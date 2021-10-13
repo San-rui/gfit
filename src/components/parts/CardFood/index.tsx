@@ -1,6 +1,6 @@
-import { food } from '../CardFood/api'
+import { food } from './api'
 import { useState, useEffect } from 'react'
-import {Branded} from '../../types'
+import {Branded} from '../../../types'
 import './style.scss'
 
 
