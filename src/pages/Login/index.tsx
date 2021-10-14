@@ -3,7 +3,10 @@ import './style.scss';
 import { FormEvent, FC, useState } from "react";
 import { getUsers } from '../../api';
 import { User } from '../../types';
-import { Layout } from '../../components/layout'
+import { Layout } from '../../components/layout';
+import { Link } from "react-router-dom";
+
+import logo from '../../assets/images/logo.png';
 
 
 
@@ -38,10 +41,15 @@ const Login :FC= () => {
 
     return (
         <Layout hidenHeader>
-            <div className="login">
+            <div className="main-login">
                 <form action="" onSubmit={handleSubmit}>
-                    <h2>Login</h2>
-                    <div>
+                    <img src={logo} alt="" className='logo'/>
+                    <div className='title-login'>
+                        <h2>Login</h2>
+                        <i className="fas fa-key icon"></i>
+                    </div>
+                    
+                    <div className='container-input'>
                         <label htmlFor="email">Email</label>
                         <input 
                             id="email" 
@@ -54,7 +62,7 @@ const Login :FC= () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className='container-input'>
                         <label htmlFor="password">Password</label>
                         <input 
                             id="password" 
@@ -69,16 +77,18 @@ const Login :FC= () => {
                     </div>
                     <button type="submit">Send</button>
                 </form>
-                <a href="">Sing up</a>
-            </div>
-            
-            <p>LOS DATOS INGRESADOS PERTENECEN A: {userLogged?.map(user=>{
+                <Link to="./users/add">Sing up</Link>
+
+                <p>LOS DATOS INGRESADOS PERTENECEN A: {userLogged?.map(user=>{
                             return (
                                 
                                     <span>{user.name}</span>
                                 
                             )
             })}</p>
+            </div>
+            
+            
         </Layout>
     )
 }

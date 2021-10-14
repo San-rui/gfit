@@ -31,7 +31,7 @@ const SingUp :FC = () => {
             <div className="sing-up">
             <form action="" onSubmit={handleSubmit}>
                 <h2>Sing Up</h2>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="name">Name</label>
                     <input id="name" 
                         type="name" name="name" 
@@ -42,7 +42,7 @@ const SingUp :FC = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="email">Email</label>
                     <input 
                         id="email" 
@@ -55,7 +55,7 @@ const SingUp :FC = () => {
                         required 
                     />
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="password">Password</label>
                     <input 
                         id="password" 
@@ -68,7 +68,7 @@ const SingUp :FC = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="sex">Gender</label>
                     <select name="gender" id="gender" onChange={e =>{ 
                             setGender( e.target.value)
@@ -78,7 +78,7 @@ const SingUp :FC = () => {
                         <option value="woman">Female</option>
                     </select>
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="age">Age</label>
                     <input 
                         id="age"  
@@ -91,7 +91,7 @@ const SingUp :FC = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="weight">Weight in Kg</label>
                     <input 
                         id="weight"  
@@ -104,7 +104,7 @@ const SingUp :FC = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className='container-input-select'>
                     <label htmlFor="height">Height in CM</label>
                     <input 
                         id="height"  

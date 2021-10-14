@@ -1,45 +1,55 @@
 @import '../../../scss/variables.scss';
 
+.header-secondary{
+    margin: 4.5rem 0rem 2rem 0rem;
+    height: 25rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    padding: 2rem 3rem 2rem 3rem;
+    border-bottom: 2px solid $primary;
+    background: 
+    linear-gradient( rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)
+    ), url('../../../assets/images/pexels-mikhail-nilov-6740041\ 1.png');
+    background-size:cover;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-position:center; 
 
-.header-primary{
-    width: 100%;
-    height: 100px;
-    background-color:$white-color; 
-    display:flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 5%;
-    font-weight: 700;
-    font-size: 20px;
-    position: fixed;
-    top:0;
-    left:0;
-    
-
-
-    ul{
+    .header-text{
         display: flex;
-        align-items: center;
-        flex-direction: row;
-        list-style-type: none;
+        justify-content:center;
+        align-items: flex-end;
+        flex-direction:column;
+        color: $color-white;
+        text-align: center;
+        font-size: 1.2rem;
+        
 
-        li{
-            margin-left: 120px;
-            color:$primary-aqua;
-            cursor: pointer;
-            transition-duration: 0.3s;
+        h1{
+            width: 25%;
+            height:100%;
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+            margin-bottom: 2rem;
+            line-height:2.7rem;
+            margin-right: 5rem;
+            span{
+                font-size: 5rem;
+                color: $color-white;
+            }
 
-        }
+            .health-text{
+                align-self: flex-end;
+            }
 
-        li:hover{
-            color:$white-color
-            ;transition-duration: 0.3s;
-        }
-
-        img{
-            width: 30px;
-            margin-right: 10px;
+            .and{
+                color:$primary;
+                align-self: center;
+            }
         }
     }
+    
 }
 

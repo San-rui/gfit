@@ -5,76 +5,84 @@ $primary-blue: #007397;
 $primary-aqua: #DEEAF5;
 $white-color: #FFFF;
 $secondary-green: #BACCCD;
-
+@import '../../scss/variables.scss';
 
 .sing-up{
-    width: 50vw;
-    padding:10% 0%;
+    width: 99vw;
+    padding:5% 10%;  
     form{
         width: 100%;
         display: flex;
         flex-direction:column;
         justify-content:center;
         align-self: center;
-        background-color: $primary-blue;
+        background-color: $background-color;
         padding:1.5rem;
         border-radius: 1rem;
-        color: $primary-aqua;
+        color: $color-text;
     
         h2{
             text-align: center;
-            font-size: 3rem;
-        }
-    
-        label{
-            font-size: 1.5rem;
-        }
-    
-        input{
-            width: 100%;
-            height:2rem;
-            border-radius: 0.5rem;
-            border:none;
-            margin: 0.3rem 0 1rem 0;
-            padding-left: 1rem;
-            font-family: 'Open Sans Condensed', sans-serif;
-            font-size: 1.2rem;
+            font-size: 2rem;
         }
         
-        select{
-            width: 100%;
-            height:2rem;
-            border-radius: 0.5rem;
-            border:none;
-            margin: 0.3rem 0 1rem 0;
-            padding-left: 1rem;
-            font-family: 'Open Sans Condensed', sans-serif;
+        .container-input-select{
             font-size: 1.2rem;
-
             
+            input{
+                width: 100%;
+                height:2rem;
+                border-radius: 0.5rem;
+                border:none;
+                margin: 0.3rem 0 1rem 0;
+                padding-left: 1rem;
+                font-family: 'Bellota Text', cursive;
+                font-size: 1rem;
+            }
+            input::placeholder{
+                font-size: 1rem;
+            }
+            
+            select{
+                width: 100%;
+                height:2rem;
+                border-radius: 0.5rem;
+                border:none;
+                margin: 0.3rem 1rem 1rem 0;
+                padding-left: 1rem;
+                font-family: 'Open Sans Condensed', sans-serif;
+                font-size: 1.2rem;
+    
+                option{
+                    color: $color-text;
+                    font-size: 13rem;
+                    font-family: 'Bellota Text', cursive;
+                }
+            }
         }
+        
         
 
         button{
-            font-family: 'Open Sans Condensed', sans-serif;
-            font-size: 2rem;
-            background-color: $primary-yellow;
-            color: $primary-petrol;
+            font-family: 'Bellota Text', cursive;
+            font-size: 1.5rem;
+            background-color: $hover-background;
+            color: $primary;
             display: flex;
             justify-content:center;
             align-items: center;
             margin-top: 1rem;
-            padding: 2% 5%;
+            width: 30%;
             height:2.5rem;
             border-radius: 5rem;
             border:none;
             align-self: center;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+            box-shadow: $box-shadow;
             transition-duration: 0.3s;
         }
         button:hover{
-            background-color: $primary-red;
-            color: $white-color;
+            background-color: $secondary;
+            color: $color-white;
             transition-duration: 0.3s;
         }
     }

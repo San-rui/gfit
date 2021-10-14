@@ -1,14 +1,13 @@
 import {FC} from "react";
-import {Header} from '../Header/';
-import {Footer} from '../Footer';
-import {Main} from '../Main';
+import {Header, Main, Footer} from '../../layout'
 
 type Props={
     id?: string,
     hidenHeader?: boolean,
+    hidenFotter?: boolean,
 };
 
-const Layout: FC <Props> = ({children, hidenHeader})=>{
+const Layout: FC <Props> = ({children, hidenHeader, hidenFotter})=>{
     return (
         <>
             {!hidenHeader && <Header/ >}
@@ -16,7 +15,7 @@ const Layout: FC <Props> = ({children, hidenHeader})=>{
                 { children }
             </Main>
         
-            <Footer />
+            {!hidenFotter && <Footer />}
         </>
     );
 };
