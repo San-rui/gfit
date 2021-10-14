@@ -4,7 +4,7 @@ import './style.scss'
 
 const Footer:FC = ()=>{
     return (
-        <footer>
+        <footer className='footer'>
             Footer
         </footer>
     )

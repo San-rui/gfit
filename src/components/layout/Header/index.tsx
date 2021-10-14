@@ -1,40 +1,28 @@
-import { FC } from "react";
-import { Link } from 'react-router-dom'
+import { FC, useState } from "react";
+import { Nav } from '../index'
 
-import woman from '../../../assets/images/woman.png'
-import sport from '../../../assets/images/sport.png'
-import diet from '../../../assets/images/diet.png'
 
+import logo from '../../../assets/images/logo.png';
 
 import './style.scss'
 
 const Header:FC = () => {
-
+    
     return (
-        <header className="header-primary">
-            <ul>
-                <li>
-                    <Link to="/profile">
-                        <img src={woman} alt=""/>
-                        <p>My Profile</p>
-                    </Link>
-                    
-                </li>
-                <li>
-                    <Link to="/">
-                        <img src={diet} alt=""/>
-                        <p>Dashboard</p>
-                    </Link>
-                    
-                </li>
-                <li>
-                    <Link to="./training">
-                        <img src={sport} alt=""/>
-                        <p>Home</p>
-                    </Link>
-                    
-                </li>
-            </ul>
+        <header >
+            <Nav/>
+            <div className="header-secondary">
+                <div className="header-text">
+                    <h1>
+                        <span className='health-fitness'>Fitness</span>
+                        <span className="and">&</span> 
+                        <span className='health-text'>Health</span>
+                    </h1>
+                    <p className="text-header">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo laboriosam accusantium architecto consequatur earum fuga nisi sed ducimus necessitatibus iste. Vitae nostrum repellat, praesentium velit eaque voluptas fugit eius mollitia.</p>
+                </div>
+                
+            </div>
+            
         </header>
     )
     

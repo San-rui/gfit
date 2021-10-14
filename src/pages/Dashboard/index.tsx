@@ -4,12 +4,16 @@ import { CardFood } from '../../components/parts';
 import { CardStatus} from '../../components/parts';
 import { CardSport } from '../../components/parts';
 
+import './style.scss';
+
 const Dashboard: FC= () => {
 
     return (
-        <Layout>
+        <Layout>      
             <div className="main-primary">
-                    <section className="card-food">
+                <h2>My dashboard</h2>
+                <div>
+                <section className="card-food">
                         <CardFood/>
                         <CardStatus/>
                     </section>
@@ -18,6 +22,8 @@ const Dashboard: FC= () => {
                         <CardStatus/>
                     </section>
                 </div>
+                    
+            </div>
         </Layout>
 
     )

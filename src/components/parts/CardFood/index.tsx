@@ -7,8 +7,20 @@ import './style.scss'
 
 const CardFood = () =>{
 
-    const [meal, setMeal]= useState<Branded[]>()
-    const [search, setSearch]=useState('')
+    const [meal, setMeal]= useState<Branded[]>();
+    const [search, setSearch]=useState('');
+    const [title, setTitle]= useState(false);
+
+    const moveTitle=()=>{
+        console.log(window.scrollY)
+        if(window.scrollY >= 150){
+            setTitle(true);
+        } else{
+            setTitle(false);
+        }
+    }
+
+    window.addEventListener('scroll', moveTitle);
 
 
 
@@ -20,9 +32,8 @@ const CardFood = () =>{
     
     return (
         <div>
-            <h2 className="titile-food">Weekly Meal</h2>
+            <h2 className={title ? 'title-food title-scroll': 'title-food'}>Weekly Meal</h2>
                 <div>
-                    <h3 className="week">Week</h3>
                     <input id="food" 
                         type="text" name="food" 
                         placeholder="Que vas a comer?" 

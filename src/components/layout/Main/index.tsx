@@ -1,9 +1,5 @@
-
 import { FC } from 'react';
 
-
-
-import './style.scss'
 
 const Main:FC = ({children}) => {
 
@@ -11,11 +7,7 @@ const Main:FC = ({children}) => {
             <main>
                 { children }
             </main>
-
-        
-
     )
-    
 }
 
 export { Main }

@@ -8,6 +8,7 @@ import { Activity} from '../../../types'
 const CardSport = () =>{
 
     const [training, setTraining]= useState<Activity | undefined>();
+    const [title, setTitle]= useState(false);
 
     const getTraining = async() =>{
         try{ 
@@ -24,50 +25,61 @@ const CardSport = () =>{
     (!training)? getTraining(): console.log("TRAINING", training);
 
     
+
+    const moveTitle=()=>{
+        console.log(window.scrollY)
+        if(window.scrollY >= 450){
+            setTitle(true);
+        } else{
+            setTitle(false);
+        }
+    }
+
+    window.addEventListener('scroll', moveTitle);
+
     return (
         <div>
-            <h2 className="titile-sport">Entrenamiento</h2>
+            <h2 className={title ? 'title-sport title-scroll': 'title-sport'}>Weekly Workout</h2>
                 <div>
-                    <h3 className="week">Semana</h3>
                     <div className="days">
                         <div className="sport">
-                            <h4>Lunes</h4>
+                            <h4>Monday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Martes</h4>
+                            <h4>Tuesday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Miercoles</h4>
+                            <h4>Wednesday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Jueves</h4>
+                            <h4>Thursday</h4>       
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Viernes</h4>
+                            <h4>Friday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Sábado</h4>
+                            <h4>Saturday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
                         <div className="sport">
-                            <h4>Domingo</h4>
+                            <h4>Sunday</h4>
                             <div>
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
