@@ -27,11 +27,14 @@
         background-color: $background-color;
         color: $color-text;
         border-radius:1rem;
-        border-radius: 1rem;
         padding: 2%;
         box-shadow: $box-shadow;
-        margin-bottom: 5%;
-        padding:5% 5%;
+        margin: auto;
+        margin: 5% 0 5% 0; 
+        min-width: 600px;
+        
+
+
     
         img{
             background-color: $primary;

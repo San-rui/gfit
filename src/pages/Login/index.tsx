@@ -33,7 +33,7 @@ const Login :FC= () => {
         e.preventDefault();
         //SE SETEARON LOS ESTADOS PARA CRUSARLOS CON FIREBASE
 
-        const userLoggedx =users?.filter(Element =>Element.email==email && Element.password==password);
+        const userLoggedx =users?.filter(Element =>Element.email===email && Element.password===password);
         setUserLogged(userLoggedx)
         
     }
@@ -48,7 +48,6 @@ const Login :FC= () => {
                         <h2>Login</h2>
                         <i className="fas fa-key icon"></i>
                     </div>
-                    
                     <div className='container-input'>
                         <label htmlFor="email">Email</label>
                         <input 
@@ -87,8 +86,6 @@ const Login :FC= () => {
                             )
             })}</p>
             </div>
-            
-            
         </Layout>
     )
 }
