@@ -7,7 +7,9 @@
     flex-direction:column;
     justify-content:center;
     align-self: center;
-    padding:5% 10%;  
+    padding: 1.5rem;
+    background-image: url('https://images.pexels.com/photos/6740059/pexels-photo-6740059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
 
     form{
         width: 100%;
@@ -19,9 +21,11 @@
         padding:1.5rem;
         border-radius: 1rem;
         box-shadow:$box-shadow;
+        max-width: 500px;
+        margin: auto;
 
         .logo{
-            width: 22rem;
+            width: 100%;
             justify-self: center;
         }
 

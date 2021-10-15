@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/images/logo.png';
 
-
 import './style.scss'
 
 const Nav: FC = () => {
@@ -11,7 +10,6 @@ const Nav: FC = () => {
     const [nav, setNav]= useState(false);
 
     const changeBackground=()=>{
-        console.log(window.scrollY)
         if(window.scrollY >= 1){
             setNav(true);
         } else{
@@ -27,24 +25,23 @@ const Nav: FC = () => {
                 <ul>
                     <li>
                         <Link to="/profile">
-                        <i className={nav ? "fas fa-user-circle icon icon-active":"fas fa-user-circle icon"}></i>
+                            <i className={nav ? "fas fa-user-circle icon icon-active":"fas fa-user-circle icon"}></i>
                             <p>My Profile</p>
                         </Link>
                         
                     </li>
                     <li>
                         <Link to="/">
-                        <i className={nav ? "fas fa-columns  icon icon-active":"fas fa-columns icon"}></i>
+                            <i className={nav ? "fas fa-columns  icon icon-active":"fas fa-columns icon"}></i>
                             <p>Dashboard</p>
                         </Link>
                         
                     </li>
                     <li>
                         <Link to="./login">
-                        <i className={nav ? "fas fa-sign-out-alt  icon icon-active":"fas fa-sign-out-alt icon"}></i>
-                            <p>Logout</p>
+                            <i className={nav ? "fas fa-sign-out-alt  icon icon-active":"fas fa-sign-out-alt icon"}></i>
+                            <p>Sing out</p>
                         </Link>
-                        
                     </li>
                 </ul>
             </nav>

@@ -8,8 +8,15 @@ $secondary-green: #BACCCD;
 @import '../../scss/variables.scss';
 
 .sing-up{
-    width: 99vw;
-    padding:5% 10%;  
+    width: 100%;
+    background-image: url('https://images.pexels.com/photos/6740059/pexels-photo-6740059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 1.5rem;
+    
+    
     form{
         width: 100%;
         display: flex;
@@ -20,6 +27,9 @@ $secondary-green: #BACCCD;
         padding:1.5rem;
         border-radius: 1rem;
         color: $color-text;
+        max-width: 500px;
+        margin: auto; 
+        
     
         h2{
             text-align: center;
@@ -72,7 +82,7 @@ $secondary-green: #BACCCD;
             justify-content:center;
             align-items: center;
             margin-top: 1rem;
-            width: 30%;
+            width: 40%;
             height:2.5rem;
             border-radius: 5rem;
             border:none;

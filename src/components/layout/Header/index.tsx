@@ -1,8 +1,5 @@
-import { FC, useState } from "react";
-import { Nav } from '../index'
-
-
-import logo from '../../../assets/images/logo.png';
+import { FC } from "react";
+import { Nav } from '../Navbar'
 
 import './style.scss'
 

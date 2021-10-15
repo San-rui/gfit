@@ -12,7 +12,6 @@ const CardFood = () =>{
     const [title, setTitle]= useState(false);
 
     const moveTitle=()=>{
-        console.log(window.scrollY)
         if(window.scrollY >= 150){
             setTitle(true);
         } else{
@@ -36,7 +35,7 @@ const CardFood = () =>{
                 <div>
                     <input id="food" 
                         type="text" name="food" 
-                        placeholder="Que vas a comer?" 
+                        placeholder="Enter your meal" 
                         onChange={e =>{ 
                             setSearch( e.target.value)
                         }}

@@ -27,7 +27,6 @@ const CardSport = () =>{
     
 
     const moveTitle=()=>{
-        console.log(window.scrollY)
         if(window.scrollY >= 450){
             setTitle(true);
         } else{
