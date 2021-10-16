@@ -1,43 +1,43 @@
 import './style.scss';
 
 import { FormEvent, FC, useState } from "react";
-import { getUsers } from '../../api';
-import { User } from '../../types';
+import { getUsers, getDataUser} from '../../api';
+import { User, DataUser } from '../../types';
 import { Layout } from '../../components/layout';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { setUserLoggedId } from './api';
+import { WithAuth} from '../../components/hoc';
 
 import logo from '../../assets/images/logo.png';
-
+import { useAuth } from '../../hooks';
 
 
 const Login :FC= () => {
 
-    const [ email, setEmail ] = useState <string>('');
-    const [ password, setPassword] = useState <string>('');
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword] = useState('');
 
-    const [users, setUsers]= useState<User[] | undefined>();
-    const [userLogged, setUserLogged]= useState<User[] | undefined>()
+    const { login, userSession } = useAuth();
 
-    const ObtainUsers = async() =>{
-        try{ 
-            const response = await getUsers(); 
-            setUsers(response);
-            
-        } catch(err){
-            console.log(err);
-        }
-    }
-    (!users)? ObtainUsers(): console.log("los usuarios son: ",users);
-
-    const handleSubmit = (e: FormEvent) =>  {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        //SE SETEARON LOS ESTADOS PARA CRUSARLOS CON FIREBASE
+        try {
+            await login(email, password);
+        } catch (err) {
+            console.log(err);
+            }
+    };
 
-        const userLoggedx =users?.filter(Element =>Element.email===email && Element.password===password);
-        setUserLogged(userLoggedx)
-        
+  // useEffect(() => {
+  //   localStorage.setItem("user", JSON.stringify(userSession));
+  // }, [userSession]);
+
+    if (userSession) {
+    localStorage.setItem("user", JSON.stringify(userSession));
     }
-    
+
+
+
 
     return (
         <Layout hidenHeader>
@@ -65,7 +65,7 @@ const Login :FC= () => {
                         <label htmlFor="password">Password</label>
                         <input 
                             id="password" 
-                            type="text" 
+                            type="password" 
                             name="password" 
                             placeholder="Enter your password"
                             onChange={e =>{ 
@@ -77,17 +77,9 @@ const Login :FC= () => {
                     <button type="submit">Send</button>
                 </form>
                 <Link to="./users/add">Sing up</Link>
-
-                <p>LOS DATOS INGRESADOS PERTENECEN A: {userLogged?.map(user=>{
-                            return (
-                                
-                                    <span>{user.name}</span>
-                                
-                            )
-            })}</p>
             </div>
         </Layout>
     )
 }
 
-export { Login }
+export default WithAuth(Login)

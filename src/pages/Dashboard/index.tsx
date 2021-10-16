@@ -3,6 +3,7 @@ import { Layout } from '../../components/layout'
 import { CardFood } from '../../components/parts';
 import { CardStatus} from '../../components/parts';
 import { CardSport } from '../../components/parts';
+import { WithAuth} from '../../components/hoc';
 
 import './style.scss';
 
@@ -29,4 +30,4 @@ const Dashboard: FC= () => {
     
 }
 
-export { Dashboard }
+export default WithAuth (Dashboard)

@@ -9,6 +9,12 @@ export type User ={
         height:number,
 }
 
+export type DataUser={
+        id: string,
+        wod?: string[],
+        meal?: string[],
+}
+
 export type Results = {
         category: number,
         creation_date: string,

@@ -3,8 +3,6 @@ import {trainingApi} from './api'
 import { useState } from 'react'
 import { Activity} from '../../../types'
 
-
-
 const CardSport = () =>{
 
     const [training, setTraining]= useState<Activity | undefined>();
@@ -14,17 +12,10 @@ const CardSport = () =>{
         try{ 
             const response: any = await trainingApi(); 
             setTraining(response);
-        
-            
         } catch(err){
             console.log(err);
         }
-        
     }
-
-    (!training)? getTraining(): console.log("TRAINING", training);
-
-    
 
     const moveTitle=()=>{
         if(window.scrollY >= 450){
@@ -35,6 +26,16 @@ const CardSport = () =>{
     }
 
     window.addEventListener('scroll', moveTitle);
+    
+
+    const renderOptions =()=>{
+        getTraining()
+        const array=[];
+        for(const prop in training){
+            array.push(<option value={prop}>{prop}</option>)
+        }
+        return array;
+    }
 
     return (
         <div>
@@ -86,7 +87,7 @@ const CardSport = () =>{
                     </div>
                 </div>
                 <select name="trainingOptions" id="trainingOptions">
-
+                { renderOptions() }
                 </select>
         </div>
     )
