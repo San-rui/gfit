@@ -19,13 +19,9 @@ const SingUp :FC = () => {
 
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
-        console.log("el evento reacciono");
-
         signup({email, password, name, gender, age, weight, height})
     };
     
-
-
     return (
         <Layout hidenHeader>
             <div className="sing-up">
