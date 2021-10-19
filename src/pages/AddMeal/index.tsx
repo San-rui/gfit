@@ -16,8 +16,8 @@ const AddMeal: FC= () => {
     const [typeMeal, setTypeMeal]=useState('breackfast');
     const [src, setSrc]=useState('');
 
-    const idUser: User = JSON.parse(localStorage.getItem('user') || "")
-    console.log(idUser.id)
+    //const idUser: User = JSON.parse(localStorage.getItem('user') || "")
+    //console.log(idUser.id)
 
     const obj: UserWodMeal= {
         
@@ -28,7 +28,7 @@ const AddMeal: FC= () => {
             diner: "La cena"
         },
         day:day,
-        id: idUser.id,
+        id: 'idUser.id',
     }
 
 
