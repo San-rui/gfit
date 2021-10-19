@@ -1,4 +1,4 @@
-import { SingUp, Users, Profile, AddTask } from "./pages";
+import { SingUp, Users, Profile, AddMeal } from "./pages";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useAuth } from "./hooks";
 import Login from './pages/Login';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/users/add" component={SingUp} />
 
-          <Route path="/add-task" component={AddTask} exact />
+          <Route path="/add-meal" component={AddMeal} exact />
           <Route path="/users" component={Users} exact />
           <Route path="/profile" component={Profile}/>
           <Route path="/" component={Dashboard} />

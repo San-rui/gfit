@@ -1,14 +1,11 @@
-import { food } from './api'
-import { useState, useEffect } from 'react'
-import {Branded} from '../../../types'
-import './style.scss'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
+import './style.scss';
 
 
 const CardFood = () =>{
 
-    const [meal, setMeal]= useState<Branded[]>();
-    const [search, setSearch]=useState('');
     const [title, setTitle]= useState(false);
 
     const moveTitle=()=>{
@@ -21,32 +18,12 @@ const CardFood = () =>{
 
     window.addEventListener('scroll', moveTitle);
 
-
-
-    useEffect (  () => {
-        food(search).then(response=>{
-            setMeal(response)
-        })
-    }, [search])
     
     return (
-        <div>
+        <div className='box-meal'>
             <h2 className={title ? 'title-food title-scroll': 'title-food'}>Weekly Meal</h2>
+            <Link to='/add-meal' className="add-meal">Add weekly meal</Link>
                 <div>
-                    <input id="food" 
-                        type="text" name="food" 
-                        placeholder="Enter your meal" 
-                        onChange={e =>{ 
-                            setSearch( e.target.value)
-                        }}
-                    />
-                    <select name="food-added" id="food-added">
-                        {
-                            meal?.map(item =>{
-                                return <option>{item.food_name}</option>
-                            })
-                        }
-                    </select>
                     <div className="days">
                         <div className="food">
                             <h4>Monday</h4>

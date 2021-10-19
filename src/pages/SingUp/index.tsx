@@ -69,7 +69,7 @@ const SingUp :FC = () => {
                     <select name="gender" id="gender" onChange={e =>{ 
                             setGender( e.target.value)
                         } } required>
-                    <option value="" selected disabled>Enter your gender</option>
+                        <option value="" selected disabled>Enter your gender</option>
                         <option value="man">Male</option>
                         <option value="woman">Female</option>
                     </select>

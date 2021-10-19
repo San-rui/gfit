@@ -7,7 +7,6 @@
     box-sizing: border-box;
 }
 
-
 body{
     height:100vh;
     margin:0;
@@ -15,5 +14,57 @@ body{
     font-family: 'Bellota Text', cursive;
     background-color: $color-white;
 
+}
+
+input{
+    width: 100%;
+    height:2rem;
+    border-radius: 0.5rem;
+    border:none;
+    margin: 0.3rem 0 1rem 0;
+    padding:0 0.5rem 0 0.5rem;
+    font-family: 'Bellota Text', cursive;
+    box-shadow: $box-shadow;
+}
+
+input::placeholder{
+    font-size: 1rem;
+}
+
+select{
+    width: 100%;
+    height:2rem;
+    border-radius: 0.5rem;
+    border:none;
+    margin: 0.3rem 0rem 1rem 0;
+    padding:0 0.5rem 0 0.5rem;
+    font-family: 'Bellota Text', cursive;
+    font-size: 1rem;
+    color: $color-text;
+    box-shadow: $box-shadow;
+}
+
+button{
+    font-family: 'Bellota Text', cursive;
+    font-size: 1.2rem;
+    background-color: $hover-background;
+    color: $primary;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: 1rem;
+    width: 30%;
+    height:2.5rem;
+    border-radius: 5rem;
+    border:none;
+    align-self: center;
+    box-shadow: $box-shadow;
+    transition-duration: 0.3s;
+}
+
+button:hover{
+background-color: $secondary;
+color: $color-white;
+transition-duration: 0.3s;
 }
 

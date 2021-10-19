@@ -114,3 +114,17 @@ export type Activity={
         winteractivities: [],
 
 }
+
+export type Meal={
+        breakfast?:string,
+        lunch?:string,
+        afternoonSnack?:string,
+        diner?: string,
+}
+
+export type UserWodMeal= {
+        wod?:string,
+        meal?:Meal,
+        day?:string,
+        id: string,
+}
