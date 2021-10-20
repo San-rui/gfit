@@ -4,6 +4,7 @@ import { User } from '../../types';
 import { Layout } from '../../components/layout'
 
 import './style.scss'
+import { WithAuth } from '../../components/hoc';
 
 const Users:FC =()=>{
 
@@ -64,8 +65,4 @@ const Users:FC =()=>{
     )
 }
 
-
-
-
-
-export { Users }
+export default WithAuth(Users)

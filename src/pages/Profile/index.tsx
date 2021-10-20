@@ -1,4 +1,5 @@
 import woman from '../../assets/images/woman.png';
+import { WithAuth } from '../../components/hoc';
 import { Layout } from '../../components/layout'
 
 import './style.scss'
@@ -39,4 +40,4 @@ const Profile = () =>{
 
 }
 
-export { Profile }
+export default WithAuth (Profile)
