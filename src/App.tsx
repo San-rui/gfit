@@ -1,9 +1,10 @@
-import { SingUp, Users, Profile, AddMeal } from "./pages";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { useAuth } from "./hooks";
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-
+import Profile from './pages/Profile';
+import  AddMeal from './pages/AddMeal';
+import SingUp from './pages/SingUp';
+import Users from './pages/Users';
 
 import './scss/variables.scss';
 import './scss/style.scss';

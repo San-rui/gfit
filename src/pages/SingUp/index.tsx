@@ -4,6 +4,7 @@ import { signup } from './api';
 import { Layout } from '../../components/layout'
 
 import './style.scss';
+import { WithAuth } from "../../components/hoc";
 
 
 const SingUp :FC = () => {
@@ -122,4 +123,4 @@ const SingUp :FC = () => {
 
 }
 
-export { SingUp }
+export default WithAuth(SingUp)

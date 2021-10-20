@@ -5,6 +5,7 @@ import { food, setDataUser} from '../../pages/AddMeal/api';
 import { useState, useEffect } from 'react';
 import './style.scss';
 import { Branded, Common, User, UserWodMeal } from '../../types';
+import { WithAuth } from '../../components/hoc';
 
 
 
@@ -126,4 +127,4 @@ const AddMeal: FC= () => {
     )
 }
 
-export { AddMeal }
+export default WithAuth(AddMeal)
