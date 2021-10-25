@@ -12,11 +12,11 @@ type Response ={
     }
 }
 
-const food = async (query:string): Promise<Common[]>=>{
+const food = async (query:string): Promise<Branded[]>=>{
 
     const response: Response= await apiFood.get(`/search/instant?query=${query}`);
-    console.log(response.data.common)
-    return response.data.common;
+    console.log(response.data.branded)
+    return response.data.branded;
 }
 export { food }
 

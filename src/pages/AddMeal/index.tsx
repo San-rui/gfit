@@ -7,18 +7,27 @@ import './style.scss';
 import { Branded, Common, User, UserWodMeal } from '../../types';
 import { WithAuth } from '../../components/hoc';
 
+const defaultValues = {
+    day:"",
+    search: "",
+    typeMeal: "",
+    chosenMeal:"",
+    src: "",
+};
 
 
 const AddMeal: FC= () => {
-    const [meal, setMeal]= useState<Common[]>();
+    const [meal, setMeal]= useState<Branded[]>();
     const [search, setSearch]=useState('');
     const [day, setDay]=useState('monday');
     const [chosenMeal, setChosenMeal]=useState('');
     const [typeMeal, setTypeMeal]=useState('breackfast');
-    const [src, setSrc]=useState('');
+    const [src, setSrc]=useState<string | undefined>();
 
-    //const idUser: User = JSON.parse(localStorage.getItem('user') || "")
-    //console.log(idUser.id)
+    const [inputs, setInputs]=useState(defaultValues)
+
+    const idUser: User = JSON.parse(localStorage.getItem('user') || "")
+    console.log(idUser.id)
 
     const obj: UserWodMeal= {
         
@@ -39,12 +48,11 @@ const AddMeal: FC= () => {
         setDataUser(obj);
     };
 
-
     useEffect (  () => {
-        food(search).then(response=>{
+        food(inputs.search).then(response=>{
             setMeal(response)
         })
-    }, [search])
+    }, [inputs.search])
 
     const addImg=()=>{
         if((src=='https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png')){
@@ -56,15 +64,19 @@ const AddMeal: FC= () => {
     }
 
     const addSelect=()=>{
-        if(search!==''){
+        if(inputs.search!==''){
             return(
                 <>
                     <div className="form-line">
                         <label>Select your meal</label>
                         <select name="food-added" id="food-added" onChange={e =>{ 
-                            setChosenMeal(e.target.value)
-                            setSrc(e.target.value)
-                            //item.photo.thumb
+                            setInputs({ ...inputs, chosenMeal: e.target.value })
+                            
+
+                            const srcSelectedItem: Branded | undefined=meal?.find(item=> item.food_name===e.target.value)
+                            setSrc(srcSelectedItem?.photo.thumb);
+                            
+
                         } } required>
                         {
                             meal?.map(item =>{
@@ -87,7 +99,7 @@ const AddMeal: FC= () => {
                         <div className="form-line">
                             <label>Choose day</label>
                             <select name="day-selected" id="day-selected" onChange={e =>{ 
-                            setDay( e.target.value)
+                            setInputs({ ...inputs, day: e.target.value })
                         } } required>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -101,7 +113,7 @@ const AddMeal: FC= () => {
                         <div className="form-line">
                             <label>Type of meal</label>
                             <select name="day-selected" id="day-selected" onChange={e =>{ 
-                            setTypeMeal( e.target.value)
+                            setInputs({ ...inputs, typeMeal: e.target.value })
                         } } required>
                                 <option value="breakfast">Breakfast</option>
                                 <option value="lunch">Lunch</option>
@@ -115,7 +127,7 @@ const AddMeal: FC= () => {
                             type="text" name="food" 
                             placeholder="Enter your meal" 
                             onChange={e =>{ 
-                                setSearch(e.target.value)
+                                setInputs({ ...inputs, search: e.target.value })
                             }}
                             />
                         </div>

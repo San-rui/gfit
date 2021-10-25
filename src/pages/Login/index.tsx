@@ -4,40 +4,39 @@ import { FormEvent, FC, useState } from "react";
 import { getUsers, getDataUser} from '../../api';
 import { User, DataUser } from '../../types';
 import { Layout } from '../../components/layout';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { setUserLoggedId } from './api';
 import { WithAuth} from '../../components/hoc';
 
 import logo from '../../assets/images/logo.png';
 import { useAuth } from '../../hooks';
 
+const defaultValues = {
+    email: "",
+    password: "",
+};
 
 const Login :FC= () => {
-
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword] = useState('');
+    const [inputs, setInputs] = useState(defaultValues);
 
     const { login, userSession } = useAuth();
+    const { push } = useHistory();
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+
         try {
-            await login(email, password);
+            await login(inputs.email, inputs.password);
+            
         } catch (err) {
             console.log(err);
             }
     };
 
-  // useEffect(() => {
-  //   localStorage.setItem("user", JSON.stringify(userSession));
-  // }, [userSession]);
-
     if (userSession) {
-    localStorage.setItem("user", JSON.stringify(userSession));
-    }
-
-
-
+        localStorage.setItem("user", JSON.stringify(userSession));
+        push("/");
+        }
 
     return (
         <Layout hidenHeader>
@@ -56,7 +55,7 @@ const Login :FC= () => {
                             name="email" 
                             placeholder="Enter your email"
                             onChange={e =>{ 
-                                setEmail( e.target.value)
+                                setInputs({ ...inputs, email: e.target.value })
                             }}
                             required
                         />
@@ -69,7 +68,7 @@ const Login :FC= () => {
                             name="password" 
                             placeholder="Enter your password"
                             onChange={e =>{ 
-                                setPassword(e.target.value)
+                                setInputs({ ...inputs, password: e.target.value })
                             }}
                             required
                         />
