@@ -36,7 +36,7 @@ const Login :FC= () => {
     if (userSession) {
         localStorage.setItem("user", JSON.stringify(userSession));
         push("/");
-        }
+    }
 
     return (
         <Layout hidenHeader>
