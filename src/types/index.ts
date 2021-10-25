@@ -5,8 +5,8 @@ export type User ={
         password:string,
         gender:string,
         age:number,
-        weight:number,
-        height:number,
+        weight:string,
+        height:string,
 }
 
 export type DataUser={

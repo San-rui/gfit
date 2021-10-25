@@ -1,27 +1,36 @@
 import { FormEvent, useState, FC } from "react";
-import React from 'react'
+import React from 'react';
 import { signup } from './api';
-import { Layout } from '../../components/layout'
+import { Layout } from '../../components/layout';
+import { useHistory } from 'react-router-dom';
+import { WithAuth } from "../../components/hoc";import './style.scss';
 
-import './style.scss';
-import { WithAuth } from "../../components/hoc";
-
+const defaultValues = {
+    email: "",
+    password: "",
+    name: "",
+    gender: "",
+    age: 0,
+    weight:"",
+    height:"",
+};
 
 const SingUp :FC = () => {
 
-    const [ email, setEmail ] = useState <string>('');
-    const [ password, setPassword] = useState <string>('');
-    const [ name, setName] = useState <string>('');
-    const [gender, setGender] = useState <string>('');
-    const [age, setAge] = useState <number>(0);
-    const [weight, setWeight] = useState <number>(0);
-    const [height, setHeight] = useState <number>(0);
+    const [inputs, setInputs] = useState(defaultValues);
+    const { push } = useHistory();
 
-
-    const handleSubmit = (e: FormEvent) =>  {
+    const handleSubmit = async (e: FormEvent) =>  {
         e.preventDefault();
-        signup({email, password, name, gender, age, weight, height})
-    };
+        
+        try {
+            await signup(inputs);
+            push('/login')
+            
+        } catch (err) {
+            console.log(err);
+            }
+    }
     
     return (
         <Layout hidenHeader>
@@ -34,7 +43,7 @@ const SingUp :FC = () => {
                         type="name" name="name" 
                         placeholder="Enter your name" 
                         onChange={e =>{ 
-                            setName( e.target.value)
+                            setInputs({ ...inputs, name: e.target.value })
                         }}
                         required
                     />
@@ -47,7 +56,7 @@ const SingUp :FC = () => {
                         name="email" 
                         placeholder="Enter your email"
                         onChange={e =>{ 
-                            setEmail( e.target.value)
+                            setInputs({ ...inputs, email: e.target.value })
                         }}
                         required 
                     />
@@ -60,7 +69,7 @@ const SingUp :FC = () => {
                         name="password" 
                         placeholder="Enter your password"
                         onChange={e =>{ 
-                            setPassword(e.target.value)
+                            setInputs({ ...inputs, password: e.target.value })
                         }}
                         required
                     />
@@ -68,7 +77,7 @@ const SingUp :FC = () => {
                 <div className='container-input-select'>
                     <label htmlFor="sex">Gender</label>
                     <select name="gender" id="gender" onChange={e =>{ 
-                            setGender( e.target.value)
+                            setInputs({ ...inputs, gender: e.target.value })
                         } } required>
                         <option value="" selected disabled>Enter your gender</option>
                         <option value="man">Male</option>
@@ -83,7 +92,7 @@ const SingUp :FC = () => {
                         name="age" 
                         placeholder="Enter your age"
                         onChange={e =>{ 
-                            setAge(Number(e.target.value))
+                            setInputs({ ...inputs, age: Number(e.target.value) })
                         }}
                         required
                     />
@@ -96,7 +105,7 @@ const SingUp :FC = () => {
                         name="weight" 
                         placeholder="Enter your weight in Kg"
                         onChange={e =>{ 
-                            setWeight(Number(e.target.value))
+                            setInputs({ ...inputs, weight: e.target.value })
                         }}
                         required
                     />
@@ -109,7 +118,7 @@ const SingUp :FC = () => {
                         name="height" 
                         placeholder="IEnter your height in cm"
                         onChange={e =>{ 
-                            setHeight( Number(e.target.value))
+                            setInputs({ ...inputs, height: e.target.value })
                         }}
                         required
                     />
@@ -117,10 +126,8 @@ const SingUp :FC = () => {
                 <button type="submit">Sing up</button>
             </form>
         </div>
-
         </Layout>
     )
-
 }
 
 export default WithAuth(SingUp)

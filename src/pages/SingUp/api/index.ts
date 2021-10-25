@@ -1,14 +1,7 @@
 import { api } from '../../../utils'
+import {User} from '../../../types'
 
-type Payload ={
-    email: string, 
-    password: string, 
-    name: string,
-    gender: string,
-    age:number,
-    weight:number,
-    height:number,
-}
+type Payload =Omit<User, 'id'>
 
 const signup = async (data: Payload) =>{
 
