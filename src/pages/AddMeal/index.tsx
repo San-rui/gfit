@@ -1,67 +1,88 @@
 import { FC, FormEvent } from 'react';
 import {Layout } from '../../components/layout'
 
-import { food, setDataUser} from '../../pages/AddMeal/api';
+import { food, setDataUser, modifyDataUser} from '../../pages/AddMeal/api';
 import { useState, useEffect } from 'react';
 import './style.scss';
-import { Branded, Common, User, UserWodMeal } from '../../types';
+import { Branded, User, UserWodMeal } from '../../types';
 import { WithAuth } from '../../components/hoc';
+import { getDataUser } from '../../api';
 
 const defaultValues = {
     day:"",
     search: "",
     typeMeal: "",
     chosenMeal:"",
-    src: "",
 };
-
 
 const AddMeal: FC= () => {
     const [meal, setMeal]= useState<Branded[]>();
-    const [search, setSearch]=useState('');
-    const [day, setDay]=useState('monday');
-    const [chosenMeal, setChosenMeal]=useState('');
-    const [typeMeal, setTypeMeal]=useState('breackfast');
     const [src, setSrc]=useState<string | undefined>();
-
-    const [inputs, setInputs]=useState(defaultValues)
+    const [inputs, setInputs]=useState(defaultValues);
+    const [data, setData]= useState<UserWodMeal[]>()
 
     const idUser: User = JSON.parse(localStorage.getItem('user') || "")
-    console.log(idUser.id)
 
     const obj: UserWodMeal= {
-        
         meal:{
-            breakfast:chosenMeal,
-            lunch:typeMeal,
-            afternoonSnack:"Merienda",
-            diner: "La cena"
+            breakfast:"",
+            lunch:"",
+            afternoonSnack:"",
+            diner: ""
         },
-        day:day,
-        id: 'idUser.id',
+        day:inputs.day,
+        id: idUser.id,
+    };
+    
+    const setValues=(item: UserWodMeal, value:string, food:string)=>{
+        const objeto= item.meal;
+        for(let prop in objeto){
+            if(value==='breakfast'){
+                objeto.breakfast=food;
+            } else if(value==='lunch'){
+                objeto.lunch=food;
+            } else if(value==='afternoonSnack'){
+                objeto.afternoonSnack=food;
+            } else{
+                objeto.diner=food;
+            }
+        };
+        
+    };
+    const ObtainDataUser =async()=>{
+        try{
+            const response= await getDataUser();
+            setData(response);
+        } catch(err){
+            console.log(err);
+        }
+        
+
     }
 
+    //ObtainDataUser()
 
-        
+
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
+        setValues(obj, inputs.typeMeal, inputs.chosenMeal)
         setDataUser(obj);
     };
 
-    useEffect (  () => {
+    useEffect ( () => {
         food(inputs.search).then(response=>{
             setMeal(response)
         })
     }, [inputs.search])
 
     const addImg=()=>{
-        if((src=='https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png')){
+        if((src==='https://d2eawub7utcl6.cloudfront.net/images/nix-apple-grey.png')){
             return <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUrgu4a7W_OM8LmAuN7Prk8dzWXm7PVB_FmA&usqp=CAU'></img>
 
         }else{
             return <img src={src}></img>
         }
-    }
+    };
 
     const addSelect=()=>{
         if(inputs.search!==''){
@@ -72,11 +93,9 @@ const AddMeal: FC= () => {
                         <select name="food-added" id="food-added" onChange={e =>{ 
                             setInputs({ ...inputs, chosenMeal: e.target.value })
                             
-
                             const srcSelectedItem: Branded | undefined=meal?.find(item=> item.food_name===e.target.value)
                             setSrc(srcSelectedItem?.photo.thumb);
                             
-
                         } } required>
                         {
                             meal?.map(item =>{
@@ -89,7 +108,8 @@ const AddMeal: FC= () => {
                     <button type="submit">Add</button>
                 </>)
         }
-    }
+    };
+
     return (
         <Layout>
             <div className='add-meal'>

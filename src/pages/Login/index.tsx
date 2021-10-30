@@ -1,11 +1,8 @@
 import './style.scss';
 
 import { FormEvent, FC, useState } from "react";
-import { getUsers, getDataUser} from '../../api';
-import { User, DataUser } from '../../types';
 import { Layout } from '../../components/layout';
 import { Link, useHistory } from 'react-router-dom';
-import { setUserLoggedId } from './api';
 import { WithAuth} from '../../components/hoc';
 
 import logo from '../../assets/images/logo.png';

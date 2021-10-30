@@ -9,6 +9,9 @@ import './style.scss'
 const Profile = () =>{
 
     const { userSession } = useAuth();
+    console.log(userSession.image)
+    //const image= URL.createObjectURL(userSession.image)
+    //console.log(image)
     
     return (
         <Layout>
