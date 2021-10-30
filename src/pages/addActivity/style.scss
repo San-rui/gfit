@@ -1,6 +1,6 @@
 @import '../../scss/variables.scss';
 
-.add-meal{
+.add-activity{
     display: flex;
     flex-direction: column;
     padding:0% 10%;
@@ -22,7 +22,7 @@
         align-self: flex-start;
     }
 
-    .meal{
+    .sport{
         width: 100%;
         display: flex;
         flex-direction:column;

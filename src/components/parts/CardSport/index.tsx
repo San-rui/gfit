@@ -1,21 +1,12 @@
 import './style.scss'
-import {trainingApi} from './api'
+
 import { useState } from 'react'
-import { Activity} from '../../../types'
+import { Link } from 'react-router-dom';
+
 
 const CardSport = () =>{
 
-    const [training, setTraining]= useState<Activity | undefined>();
     const [title, setTitle]= useState(false);
-
-    const getTraining = async() =>{
-        try{ 
-            const response: any = await trainingApi(); 
-            setTraining(response);
-        } catch(err){
-            console.log(err);
-        }
-    }
 
     const moveTitle=()=>{
         if(window.scrollY >= 450){
@@ -26,20 +17,11 @@ const CardSport = () =>{
     }
 
     window.addEventListener('scroll', moveTitle);
-    
-
-    const renderOptions =()=>{
-        getTraining()
-        const array=[];
-        for(const prop in training){
-            array.push(<option value={prop}>{prop}</option>)
-        }
-        return array;
-    }
 
     return (
-        <div>
+        <div className="box-sport">
             <h2 className={title ? 'title-sport title-scroll': 'title-sport'}>Weekly Workout</h2>
+            <Link to='/add-activity' className="add-activity">Add activity</Link>
                 <div>
                     <div className="days">
                         <div className="sport">
@@ -86,9 +68,6 @@ const CardSport = () =>{
                         </div>
                     </div>
                 </div>
-                <select name="trainingOptions" id="trainingOptions">
-                { renderOptions() }
-                </select>
         </div>
     )
 

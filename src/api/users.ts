@@ -1,4 +1,4 @@
-import { User, DataUser  } from "../types";
+import { User, UserWodMeal  } from "../types";
 import { api } from '../utils';
 
 
@@ -23,8 +23,9 @@ const getUsers = async (): Promise<User[]>  =>{
 
 export { getUsers }; 
 
-const getDataUser = async (): Promise<DataUser[]>  =>{
-    const response =  await api.get('/data-user.json');
+const getDataUser = async (): Promise<UserWodMeal[]>  =>{
+    const response =  await api.get('/users-data.json');
+
     return mapToArray(response.data)
 };
 export { getDataUser }; 

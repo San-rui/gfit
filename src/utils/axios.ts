@@ -24,7 +24,7 @@ export { apiFood };
 //--------API TRANING-------
 
 const apiTraining = axios.create({
-    baseURL: 'https://fitness-calculator.p.rapidapi.com',
+    baseURL: "https://fitness-calculator.p.rapidapi.com",
 
 });
 apiTraining.defaults.headers={

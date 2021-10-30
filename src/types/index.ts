@@ -7,6 +7,7 @@ export type User ={
         age:number,
         weight:string,
         height:string,
+        image: FileList | null,
 }
 
 export type DataUser={
@@ -91,28 +92,12 @@ export type Common ={
 }
 
 export type Activity={
-        bicycling: [],
-        conditioningexercise: [],
-        dancing: [],
-        fishingandhunting: [],
-        homeactivities: [],
-        homerepair: [],
-        inactivityquietlight: [],
-        lawnandgarden: [],
-        miscellaneous:[],
-        musicplaying: [],
-        occupation: [],
-        religiousactivities: [],
-        running: [],
-        selfcare: [],
-        sexualactivity: [],
-        sports: [],
-        transportation: [],
-        volunteeractivities: [],
-        walking: [],
-        wateractivities: [],
-        winteractivities: [],
-
+        activity: string,
+        description:string,
+        id:string,
+        intensityLevel: number,
+        metValue: string,
+        _id: string,
 }
 
 export type Meal={
