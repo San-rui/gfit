@@ -1,2 +1,2 @@
-export { getUsers, getDataUser } from "./users";
+export { getUsers, getDataUser, setDataUser, modifyDataUser } from "./users";
 

@@ -25,7 +25,20 @@ export { getUsers };
 
 const getDataUser = async (): Promise<UserWodMeal[]>  =>{
     const response =  await api.get('/users-data.json');
-
-    return mapToArray(response.data)
+    return response.data
 };
 export { getDataUser }; 
+
+
+const setDataUser = async (data: UserWodMeal) =>{
+    
+    await api.post('/users-data.json', data);
+}
+export { setDataUser }
+
+const modifyDataUser = async (query:string, data: UserWodMeal) =>{
+
+    await api.patch(`/users-data/${query}.json`, data);
+}
+
+export { modifyDataUser }

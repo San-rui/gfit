@@ -50,11 +50,16 @@
                 }
             }
 
-            img{
-                width: 13rem;
-                border-radius: 1rem;
-                align-self: center;
-                margin-top: 1rem;
+            .center{
+                margin-top: 3rem;
+                display: flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items: center;
+
+                button{
+                    margin-top: 2rem;
+                }
             }
         }
     }

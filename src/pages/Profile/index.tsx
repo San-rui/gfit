@@ -1,4 +1,5 @@
 import woman from '../../assets/images/woman.png';
+import man from '../../assets/images/man.png';
 import { WithAuth } from '../../components/hoc';
 import { Layout } from '../../components/layout';
 import {useAuth} from '../../hooks'
@@ -9,16 +10,13 @@ import './style.scss'
 const Profile = () =>{
 
     const { userSession } = useAuth();
-    console.log(userSession.image)
-    //const image= URL.createObjectURL(userSession.image)
-    //console.log(image)
     
     return (
         <Layout>
             <div className="main-profile">
                 <h2 className="title">My Profile</h2>
                 <div className="profile">
-                    <img src={woman} alt=""/>
+                    <img src={(userSession.gender==='woman')? woman: man} alt=""/>
                     <h2 className="name">{userSession.name}</h2>
                     <div className="profile-info">
                         <div className="info">

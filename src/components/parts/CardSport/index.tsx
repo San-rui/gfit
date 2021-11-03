@@ -1,6 +1,6 @@
 import './style.scss'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
 
@@ -8,15 +8,22 @@ const CardSport = () =>{
 
     const [title, setTitle]= useState(false);
 
-    const moveTitle=()=>{
-        if(window.scrollY >= 450){
-            setTitle(true);
-        } else{
-            setTitle(false);
+    useEffect ( ()=>{
+        const moveTitle=()=>{
+            if(window.scrollY >= 450){
+                setTitle(true);
+            } else{
+                setTitle(false);
+            }
         }
-    }
+    
+        window.addEventListener('scroll', moveTitle);
 
-    window.addEventListener('scroll', moveTitle);
+        return()=>{
+            window.removeEventListener('scroll', moveTitle);
+        }
+    }, [title])
+    
 
     return (
         <div className="box-sport">
