@@ -1,7 +1,8 @@
 import { FC, FormEvent } from 'react';
 import {Layout } from '../../components/layout'
 
-import { food, setDataUser, modifyDataUser} from '../../pages/AddMeal/api';
+import { food} from '../../pages/AddMeal/api';
+import { setDataUser, modifyDataUser } from '../../api'
 import { useState, useEffect } from 'react';
 import './style.scss';
 import { Branded, User, UserWodMeal } from '../../types';
@@ -9,20 +10,22 @@ import { WithAuth } from '../../components/hoc';
 import { getDataUser } from '../../api';
 
 const defaultValues = {
-    day:"",
+    day:"monday",
     search: "",
     typeMeal: "",
     chosenMeal:"",
 };
 
 const AddMeal: FC= () => {
+
     const [meal, setMeal]= useState<Branded[]>();
     const [src, setSrc]=useState<string | undefined>();
     const [inputs, setInputs]=useState(defaultValues);
-    const [data, setData]= useState<UserWodMeal[]>()
-
     const idUser: User = JSON.parse(localStorage.getItem('user') || "")
 
+    const [data, setData]= useState<UserWodMeal>();
+    const [idPack, setIdPack] = useState('');
+    
     const obj: UserWodMeal= {
         meal:{
             breakfast:"",
@@ -30,49 +33,77 @@ const AddMeal: FC= () => {
             afternoonSnack:"",
             diner: ""
         },
-        day:inputs.day,
-        id: idUser.id,
+        day:"",
+        id: "",
     };
-    
-    const setValues=(item: UserWodMeal, value:string, food:string)=>{
-        const objeto= item.meal;
+    const [userPack, setUserPack]=useState<UserWodMeal>(obj);
+
+    const setValues=(obj: UserWodMeal)=>{
+        const objeto= obj.meal;
         for(let prop in objeto){
-            if(value==='breakfast'){
-                objeto.breakfast=food;
-            } else if(value==='lunch'){
-                objeto.lunch=food;
-            } else if(value==='afternoonSnack'){
-                objeto.afternoonSnack=food;
-            } else{
-                objeto.diner=food;
+            if(prop===inputs.typeMeal){
+                
+                console.log("aca", prop)
+                setUserPack(prevState =>({
+                    ...prevState, 
+                    day:inputs.day,
+                    id: idUser.id,
+                    meal: {
+                        ...prevState.meal, 
+                        [prop]:inputs.chosenMeal
+                    }
+                }
+                ))
+                
             }
         };
-        
     };
-    const ObtainDataUser =async()=>{
-        try{
-            const response= await getDataUser();
-            setData(response);
-        } catch(err){
-            console.log(err);
+
+    useEffect ( () => {
+        console.log("data",data)
+        if(inputs.day!==''){
+            getDataUser().then(response=>{
+                console.log("resp", response)
+                for(const prop in response){
+                    if(response[prop].id===idUser.id && response[prop].day===inputs.day){
+                        setIdPack(prop)
+                        console.log("el id ", prop)
+                        setData(response[prop])
+                        console.log("la respuesta",response[prop])
+                    }
+                }
+            });
         }
         
+    }, [inputs.day])
 
-    }
+    
 
-    //ObtainDataUser()
+    useEffect ( () => {
+        if(inputs.chosenMeal!==''){
+            setValues(obj)
+        }
+    },[inputs.chosenMeal])
 
 
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
-        setValues(obj, inputs.typeMeal, inputs.chosenMeal)
-        setDataUser(obj);
+        
+        if(data===undefined){
+            setDataUser(userPack);
+        } else{
+            
+            modifyDataUser(idPack, userPack)
+        }
+        setData(obj)
     };
 
     useEffect ( () => {
-        food(inputs.search).then(response=>{
-            setMeal(response)
-        })
+        if(inputs.search!==''){
+            food(inputs.search).then(response=>{
+                setMeal(response)
+            })
+        }
     }, [inputs.search])
 
     const addImg=()=>{
@@ -99,7 +130,7 @@ const AddMeal: FC= () => {
                         } } required>
                         {
                             meal?.map(item =>{
-                                return <option value={item.food_name}>{item.food_name}</option>
+                                return <option value={item.food_name} key={item.nix_item_id}>{item.food_name}</option>
                             })
                         }
                         </select>
@@ -110,6 +141,8 @@ const AddMeal: FC= () => {
         }
     };
 
+
+    //console.log("userPack", userPack)
     return (
         <Layout>
             <div className='add-meal'>
@@ -137,7 +170,7 @@ const AddMeal: FC= () => {
                         } } required>
                                 <option value="breakfast">Breakfast</option>
                                 <option value="lunch">Lunch</option>
-                                <option value="fternoonSnack">Afternoon snack</option>
+                                <option value="afternoonSnack">Afternoon snack</option>
                                 <option value="diner">Diner</option>
                             </select>
                         </div>
