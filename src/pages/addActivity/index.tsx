@@ -1,20 +1,20 @@
-import './style.scss'
-import {trainingApi, caloriesBurned} from './api'
-import { getDataUser, setDataUser } from '../../api'
-import { Activity, User, UserWodMeal} from '../../types'
-import { Link } from 'react-router-dom';
-
 import { FC, useState, useEffect, FormEvent} from "react";
+import { useHistory } from 'react-router-dom';
+
+import {trainingApi, caloriesBurned} from './api'
+import { getDataUser, modifyDataUser, setDataUser } from '../../api'
+import { Activity, User, UserWodMeal} from '../../types'
 import { Layout } from '../../components/layout';
 import { WithAuth} from '../../components/hoc';
 import {useAuth} from '../../hooks'
+
+import './style.scss'
 
 const defaultValues = {
     day:"",
     level: "",
     id: "",
     time:"",
-
 };
 
 const AddActivity :FC= () => {
@@ -25,10 +25,10 @@ const AddActivity :FC= () => {
     const [description, setDescription]= useState<string | undefined>('')
     const { userSession } = useAuth();
     const [data, setData]= useState<UserWodMeal>();
+    const [idPack, setIdPack] = useState<string | undefined>('');
 
-    const idUser: User = JSON.parse(localStorage.getItem('user') || "")
-
-    console.log(idUser.id)
+    const idUser: User = JSON.parse(localStorage.getItem('user') || "");
+    const { push } = useHistory();
 
     useEffect ( () => {
         if(inputs.level!=='' ){
@@ -44,10 +44,29 @@ const AddActivity :FC= () => {
             caloriesBurned(inputs.id, inputs.time, userSession.weight,).then(response=>{
                 const cal= Math.round(Number(response));
                 setCalories(cal)
+                
                 getDataUser().then(response=>{
-                    for(const prop in response){
-                        if(response[prop].id===idUser.id && response[prop].day===inputs.day){
-                            setData(response[prop])
+                    for(const item of response){
+                        if(item.idUser===idUser.id && item.day===inputs.day){
+                            setIdPack(item.id)
+
+                            const itemAux = {
+                                ...item,
+                                wod: {
+                                    calories: cal,
+                                    description: description
+                                }
+                            }
+                            setData(itemAux)
+                            break
+                        } else{
+                            
+                            !idPack && setData({wod:{
+                                calories: cal,
+                                description: description
+                            },
+                            day:inputs.day,
+                            idUser: idUser.id})
                         }
                     }
                 })
@@ -57,11 +76,18 @@ const AddActivity :FC= () => {
 
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
-        const rest : UserWodMeal= {...data, wod: description, id: idUser.id}
-        setDataUser(rest)
-        
-    };
 
+        if(idPack){
+            modifyDataUser(idPack, data)
+            setIdPack('')
+        
+        }else {
+            setDataUser(data)
+        }
+
+        alert("Your wod was added")
+        push("/");
+    };
 
     const renderOptions =()=>{
         

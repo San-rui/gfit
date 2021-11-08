@@ -77,6 +77,23 @@
                     border-bottom: 1px solid $primary;
                     margin-bottom: 0.5rem;
                 }
+
+                h5{
+                    font-size: 1.1rem;
+                    font-weight: 800;
+                    text-decoration: underline;
+                    text-decoration-style:solid;
+                    text-decoration-color: $primary;
+                }
+
+                .meal-to-eat{
+                    font-size: 1rem;
+                }
+                .meal-missing{
+                    font-size: 1rem;
+                    color:red;
+                    text-decoration: none;
+                }
             }
         }
     }

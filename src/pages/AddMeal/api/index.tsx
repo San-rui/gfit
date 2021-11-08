@@ -1,8 +1,6 @@
 import { apiFood } from '../../../utils';
 import { Branded } from '../../../types';
 import { Common } from '../../../types';
-import { UserWodMeal } from '../../../types';
-import { api } from '../../../utils';
 
 
 type Response ={

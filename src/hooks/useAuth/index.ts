@@ -17,13 +17,13 @@ const useAuth = ()  => {
         userLogged && setUserSession({...userLogged, password: "null"});
     };
 
-    const logout=()=>{
+    // const logout=()=>{
 
-    };
+    // };
 
-    const recoveryPassword =( )=>{
+    // const recoveryPassword =( )=>{
 
-    };
+    // };
 
     return { login, userSession }
 }

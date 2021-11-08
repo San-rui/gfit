@@ -1,16 +1,19 @@
-import { FC, FormEvent } from 'react';
-import {Layout } from '../../components/layout'
+import { FC, FormEvent,  useState, useEffect  } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { food} from '../../pages/AddMeal/api';
-import { setDataUser, modifyDataUser } from '../../api'
-import { useState, useEffect } from 'react';
-import './style.scss';
+import {Layout } from '../../components/layout'
 import { Branded, User, UserWodMeal } from '../../types';
 import { WithAuth } from '../../components/hoc';
 import { getDataUser } from '../../api';
+import { food} from '../../pages/AddMeal/api';
+import { setDataUser, modifyDataUser } from '../../api'
+
+import './style.scss';
+
+
 
 const defaultValues = {
-    day:"monday",
+    day:"",
     search: "",
     typeMeal: "",
     chosenMeal:"",
@@ -24,79 +27,56 @@ const AddMeal: FC= () => {
     const idUser: User = JSON.parse(localStorage.getItem('user') || "")
 
     const [data, setData]= useState<UserWodMeal>();
-    const [idPack, setIdPack] = useState('');
-    
-    const obj: UserWodMeal= {
-        meal:{
-            breakfast:"",
-            lunch:"",
-            afternoonSnack:"",
-            diner: ""
-        },
-        day:"",
-        id: "",
-    };
-    const [userPack, setUserPack]=useState<UserWodMeal>(obj);
+    const [idPack, setIdPack] = useState<string | undefined>('');
+    const { push } = useHistory();
 
-    const setValues=(obj: UserWodMeal)=>{
-        const objeto= obj.meal;
-        for(let prop in objeto){
-            if(prop===inputs.typeMeal){
-                
-                console.log("aca", prop)
-                setUserPack(prevState =>({
-                    ...prevState, 
-                    day:inputs.day,
-                    id: idUser.id,
-                    meal: {
-                        ...prevState.meal, 
-                        [prop]:inputs.chosenMeal
-                    }
-                }
-                ))
-                
-            }
-        };
-    };
-
+    //Si ya hay un dato que coincide con el usuario y el dia me guardo el id de ese elemento
     useEffect ( () => {
-        console.log("data",data)
         if(inputs.day!==''){
             getDataUser().then(response=>{
-                console.log("resp", response)
-                for(const prop in response){
-                    if(response[prop].id===idUser.id && response[prop].day===inputs.day){
-                        setIdPack(prop)
-                        console.log("el id ", prop)
-                        setData(response[prop])
-                        console.log("la respuesta",response[prop])
+                for(const item of response){
+                    if(item.idUser===idUser.id && item.day===inputs.day){
+                        setIdPack(item.id)
+
+                        const itemAux = {
+                            ...item,
+                            meal: {
+                                ...item.meal,
+                                [inputs.typeMeal]: inputs.chosenMeal
+                            }
+                        }
+                        setData(itemAux)
+                        break
+
+                    } else{
+
+                        !idPack && setData({meal:{
+                            [inputs.typeMeal]: inputs.chosenMeal
+                        },
+                        day:inputs.day,
+                        idUser: idUser.id})
                     }
                 }
-            });
-        }
-        
-    }, [inputs.day])
-
-    
-
-    useEffect ( () => {
-        if(inputs.chosenMeal!==''){
-            setValues(obj)
-        }
+            })
+        } 
     },[inputs.chosenMeal])
-
 
     const handleSubmit = (e: FormEvent) =>  {
         e.preventDefault();
+
+        if(idPack){
+            modifyDataUser(idPack, data)
+            setIdPack('')
         
-        if(data===undefined){
-            setDataUser(userPack);
-        } else{
-            
-            modifyDataUser(idPack, userPack)
+        }else {
+            setDataUser(data)
         }
-        setData(obj)
+
+        alert("Your meal was added")
+        push("/");
     };
+
+    //---busca la comida seleccionada----//
 
     useEffect ( () => {
         if(inputs.search!==''){
@@ -121,7 +101,7 @@ const AddMeal: FC= () => {
                 <>
                     <div className="form-line">
                         <label>Select your meal</label>
-                        <select name="food-added" id="food-added" onChange={e =>{ 
+                        <select name="food-added" id="food-added" value={inputs.chosenMeal} onChange={e =>{ 
                             setInputs({ ...inputs, chosenMeal: e.target.value })
                             
                             const srcSelectedItem: Branded | undefined=meal?.find(item=> item.food_name===e.target.value)
@@ -142,7 +122,6 @@ const AddMeal: FC= () => {
     };
 
 
-    //console.log("userPack", userPack)
     return (
         <Layout>
             <div className='add-meal'>
@@ -151,8 +130,8 @@ const AddMeal: FC= () => {
                         <form action="" onSubmit={handleSubmit}>
                         <div className="form-line">
                             <label>Choose day</label>
-                            <select name="day-selected" id="day-selected" onChange={e =>{ 
-                            setInputs({ ...inputs, day: e.target.value })
+                            <select name="day-selected" id="day-selected" value={inputs.day} onChange={e =>{ 
+                            setInputs({ ...inputs, day: e.target.value }) 
                         } } required>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -165,7 +144,7 @@ const AddMeal: FC= () => {
                         </div>
                         <div className="form-line">
                             <label>Type of meal</label>
-                            <select name="day-selected" id="day-selected" onChange={e =>{ 
+                            <select name="day-selected" id="day-selected" value={inputs.typeMeal} onChange={e =>{ 
                             setInputs({ ...inputs, typeMeal: e.target.value })
                         } } required>
                                 <option value="breakfast">Breakfast</option>
@@ -179,6 +158,7 @@ const AddMeal: FC= () => {
                             <input id="food" 
                             type="text" name="food" 
                             placeholder="Enter your meal" 
+                            value={inputs.search}
                             onChange={e =>{ 
                                 setInputs({ ...inputs, search: e.target.value })
                             }}
