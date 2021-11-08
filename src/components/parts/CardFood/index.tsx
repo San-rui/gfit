@@ -1,14 +1,16 @@
-import { title } from 'process';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getDataUser } from '../../../api/users';
+import { UserWodMeal } from '../../../types';
+import { MealsDay } from '../index'
 
 import './style.scss';
-
 
 const CardFood = () =>{
 
     const [title, setTitle]= useState(false);
-
+    const [data, setData]= useState<UserWodMeal[]>();
+    
     useEffect ( ()=>{
         const moveTitle=()=>{
             if(window.scrollY >= 150){
@@ -17,155 +19,34 @@ const CardFood = () =>{
                 setTitle(false);
             }
         }
-    
         window.addEventListener('scroll', moveTitle);
 
         return()=>{
             window.removeEventListener('scroll', moveTitle);
         }
-    }, [title])
-    
+    }, [title]) 
 
-    
+    useEffect ( () => {
+            getDataUser().then(response=>{
+            setData(response)
+            })
+    }, [window])
+
     return (
         <div className='box-meal'>
             <h2 className={title ? 'title-food title-scroll': 'title-food'}>Weekly Meal</h2>
             <Link to='/add-meal' className="add-meal">Add weekly meal</Link>
                 <div>
                     <div className="days">
-                        <div className="food">
-                            <h4>Monday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Tuesday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Wednesday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Thursday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Friday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Saturday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className="food">
-                            <h4>Sunday</h4>
-                            <div>
-                                <h5>Breakfast</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Lunch</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Afternoon snack</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                            <div>
-                                <h5>Diner</h5>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
+                        {data && <>
+                        <MealsDay data={data} day={"monday"} title={"Monday"}/>
+                        <MealsDay data={data} day={"tuesday"} title={"Tuesday"}/>
+                        <MealsDay data={data} day={"wednesday"} title={"Wednesday"}/>
+                        <MealsDay data={data} day={"thrusday"} title={"Thrusday"}/>
+                        <MealsDay data={data} day={"friday"} title={"Friday"}/>
+                        <MealsDay data={data} day={"saturday"} title={"Saturday"}/>
+                        <MealsDay data={data} day={"sunday"} title={"Sunday"}/>
+                        </>}
                     </div>
                 </div>
         </div>

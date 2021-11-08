@@ -108,10 +108,14 @@ export type Meal={
 }
 
 export type UserWodMeal= {
-        wod?:string,
+        wod?:{
+                description?: string,
+                calories?: number,
+        }
         meal?:{
                 [name: string]:string
         },
         day?:string,
-        id: string,
+        idUser: string,
+        id?: string,
 }

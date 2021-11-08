@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://gfit-ef23c-default-rtdb.firebaseio.com',
+    baseURL: 'https://project-gfit-72239-default-rtdb.firebaseio.com/',
 });
 
 export { api };
