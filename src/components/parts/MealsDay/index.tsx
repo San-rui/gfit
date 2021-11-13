@@ -1,6 +1,7 @@
 
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context';
 import { UserWodMeal } from '../../../types';
 
 type Props={
@@ -11,12 +12,14 @@ type Props={
 
 const MealsDay : FC <Props> = (Props) =>{
 
+    const { currentUser } = useContext(AuthContext);
+
     const showData = (data:UserWodMeal[] | undefined, mealdata:string, day: string)=>{
-        const itemDay = data?.find(item=> item.day===day)
+        const itemDay = data?.find(item=> item.day===day && item.idUser === currentUser?.id)
         const myMeals= itemDay?.meal
 
         for(const i in myMeals){
-            if(i==mealdata){
+            if(i===mealdata){
                 return (<p className="meal-to-eat">{myMeals[mealdata]}</p>)
             }
         }

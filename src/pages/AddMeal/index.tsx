@@ -1,21 +1,23 @@
-import { FC, FormEvent,  useState, useEffect  } from 'react';
+import { FC, FormEvent,  useState, useEffect, useContext  } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {Layout } from '../../components/layout'
-import { Branded, User, UserWodMeal } from '../../types';
+import { Branded, UserWodMeal } from '../../types';
 import { WithAuth } from '../../components/hoc';
 import { getDataUser } from '../../api';
 import { food} from '../../pages/AddMeal/api';
 import { setDataUser, modifyDataUser } from '../../api'
+
+import { AuthContext } from "../../context";
 
 import './style.scss';
 
 
 
 const defaultValues = {
-    day:"",
+    day:"monday",
     search: "",
-    typeMeal: "",
+    typeMeal: "breakfast",
     chosenMeal:"",
 };
 
@@ -24,18 +26,20 @@ const AddMeal: FC= () => {
     const [meal, setMeal]= useState<Branded[]>();
     const [src, setSrc]=useState<string | undefined>();
     const [inputs, setInputs]=useState(defaultValues);
-    const idUser: User = JSON.parse(localStorage.getItem('user') || "")
-
     const [data, setData]= useState<UserWodMeal>();
     const [idPack, setIdPack] = useState<string | undefined>('');
+
+    const { currentUser } = useContext(AuthContext);
     const { push } = useHistory();
+
+    console.log("currentUser:" ,currentUser)
 
     //Si ya hay un dato que coincide con el usuario y el dia me guardo el id de ese elemento
     useEffect ( () => {
         if(inputs.day!==''){
             getDataUser().then(response=>{
                 for(const item of response){
-                    if(item.idUser===idUser.id && item.day===inputs.day){
+                    if(item.idUser===currentUser?.id && item.day===inputs.day){
                         setIdPack(item.id)
 
                         const itemAux = {
@@ -54,7 +58,7 @@ const AddMeal: FC= () => {
                             [inputs.typeMeal]: inputs.chosenMeal
                         },
                         day:inputs.day,
-                        idUser: idUser.id})
+                        idUser: currentUser?.id})
                     }
                 }
             })

@@ -23,7 +23,7 @@ const trainingApi= async (level:string): Promise<Activity[]>=>{
 
 export{ trainingApi }
 
-const caloriesBurned = async (id:string, time:string, weight:string) =>{
+const caloriesBurned = async (id:string, time:string, weight:string | undefined) =>{
     const response :Calories = await apiTraining.get(`/burnedcalorie?activityid=${id}&activitymin=${time}&weight=${weight}`);
     return response.data.data.burnedCalorie
 }

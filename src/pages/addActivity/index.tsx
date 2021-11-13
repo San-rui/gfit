@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, FormEvent} from "react";
+import { FC, useState, useEffect, FormEvent, useContext} from "react";
 import { useHistory } from 'react-router-dom';
 
 import {trainingApi, caloriesBurned} from './api'
@@ -6,7 +6,8 @@ import { getDataUser, modifyDataUser, setDataUser } from '../../api'
 import { Activity, User, UserWodMeal} from '../../types'
 import { Layout } from '../../components/layout';
 import { WithAuth} from '../../components/hoc';
-import {useAuth} from '../../hooks'
+
+import { AuthContext } from "../../context";
 
 import './style.scss'
 
@@ -19,11 +20,12 @@ const defaultValues = {
 
 const AddActivity :FC= () => {
 
-    const [inputs, setInputs] = useState(defaultValues);
+    const [inputs, setInputs] = useState (defaultValues);
     const [training, setTraining]= useState<Activity[] | undefined>();
     const [calories, setCalories]=useState(0)
     const [description, setDescription]= useState<string | undefined>('')
-    const { userSession } = useAuth();
+    const { currentUser } = useContext(AuthContext);
+
     const [data, setData]= useState<UserWodMeal>();
     const [idPack, setIdPack] = useState<string | undefined>('');
 
@@ -41,13 +43,13 @@ const AddActivity :FC= () => {
 
     useEffect ( () => {
         if(inputs.time!==''){
-            caloriesBurned(inputs.id, inputs.time, userSession.weight,).then(response=>{
+            caloriesBurned(inputs.id, inputs.time, currentUser?.weight).then(response=>{
                 const cal= Math.round(Number(response));
                 setCalories(cal)
                 
                 getDataUser().then(response=>{
                     for(const item of response){
-                        if(item.idUser===idUser.id && item.day===inputs.day){
+                        if(item.idUser===currentUser?.id && item.day===inputs.day){
                             setIdPack(item.id)
 
                             const itemAux = {

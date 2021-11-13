@@ -1,39 +1,44 @@
+import { FC, useContext} from "react";
+
 import woman from '../../assets/images/woman.png';
 import man from '../../assets/images/man.png';
 import { WithAuth } from '../../components/hoc';
 import { Layout } from '../../components/layout';
-import {useAuth} from '../../hooks'
+
+import { AuthContext } from "../../context";
 
 import './style.scss'
 
 
-const Profile = () =>{
+const Profile: FC= () =>{
 
-    const { userSession } = useAuth();
+    const { currentUser } = useContext(AuthContext);
+
+    console.log(currentUser)
     
     return (
         <Layout>
             <div className="main-profile">
                 <h2 className="title">My Profile</h2>
                 <div className="profile">
-                    <img src={(userSession.gender==='woman')? woman: man} alt=""/>
-                    <h2 className="name">{userSession.name}</h2>
+                    <img src={(currentUser?.gender==='woman')? woman: man} alt=""/>
+                    <h2 className="name">{currentUser?.name}</h2>
                     <div className="profile-info">
                         <div className="info">
                             <p>Gender</p>
-                            <p>{userSession.gender}</p>
+                            <p>{currentUser?.gender}</p>
                         </div>
                         <div className="info">
                             <p>Age</p>
-                            <p>{userSession.age}</p>
+                            <p>{currentUser?.age}</p>
                         </div>
                         <div className="info">
                             <p>Weight in Kg</p>
-                            <p>{userSession.weight}</p>
+                            <p>{currentUser?.weight}</p>
                         </div>
                         <div className="info">
                             <p>Height in Cm</p>
-                            <p>{userSession.height}</p>
+                            <p>{currentUser?.height}</p>
                         </div>
                         
                     </div>

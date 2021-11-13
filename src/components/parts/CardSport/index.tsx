@@ -2,11 +2,14 @@ import './style.scss'
 
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { UserWodMeal } from '../../../types';
 
 
 const CardSport = () =>{
 
     const [title, setTitle]= useState(false);
+    const [data, setData]= useState<UserWodMeal[]>();
+    
 
     useEffect ( ()=>{
         const moveTitle=()=>{

@@ -30,7 +30,7 @@ const CardFood = () =>{
             getDataUser().then(response=>{
             setData(response)
             })
-    }, [window])
+    }, [])
 
     return (
         <div className='box-meal'>
