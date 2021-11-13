@@ -16,24 +16,21 @@ const defaultValues = {
 const Login :FC= () => {
     const [inputs, setInputs] = useState(defaultValues);
 
-    const { login, userSession } = useAuth();
+    const { login } = useAuth();
     const { push } = useHistory();
 
-    const handleSubmit = async (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
-
+    
         try {
             await login(inputs.email, inputs.password);
-            
-        } catch (err) {
-            console.log(err);
-            }
+    
+            push("/");
+        } catch (e) {
+          // setAlert(e.message);
+        }
     };
 
-    if (userSession) {
-        localStorage.setItem("user", JSON.stringify(userSession));
-        push("/");
-    }
 
     return (
         <Layout hidenHeader>

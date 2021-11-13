@@ -116,6 +116,6 @@ export type UserWodMeal= {
                 [name: string]:string
         },
         day?:string,
-        idUser: string,
+        idUser: string | undefined,
         id?: string,
 }
