@@ -16,11 +16,9 @@ const Dashboard: FC= () => {
                 <div>
                     <section className="card-food">
                         <CardFood/>
-                        <CardStatus/>
                     </section>
                     <section className="card-sport">
                         <CardSport/>
-                        <CardStatus/>
                     </section>
                 </div>
             </div>

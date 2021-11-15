@@ -3,6 +3,8 @@ import './style.scss'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { UserWodMeal } from '../../../types';
+import { WodDay} from '../index'
+import { getDataUser } from '../../../api';
 
 
 const CardSport = () =>{
@@ -27,6 +29,11 @@ const CardSport = () =>{
         }
     }, [title])
     
+    useEffect ( () => {
+        getDataUser().then(response=>{
+        setData(response)
+        })
+}, [])
 
     return (
         <div className="box-sport">
@@ -36,45 +43,31 @@ const CardSport = () =>{
                     <div className="days">
                         <div className="sport">
                             <h4>Monday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"monday"}/>
                         </div>
                         <div className="sport">
                             <h4>Tuesday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"tuesday"}/>
                         </div>
                         <div className="sport">
                             <h4>Wednesday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"wednesday"}/>
                         </div>
                         <div className="sport">
                             <h4>Thursday</h4>       
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"thursday"}/>
                         </div>
                         <div className="sport">
                             <h4>Friday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"friday"}/>
                         </div>
                         <div className="sport">
                             <h4>Saturday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"saturday"}/>
                         </div>
                         <div className="sport">
                             <h4>Sunday</h4>
-                            <div>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
+                            <WodDay data={data} day={"sunday"}/>
                         </div>
                     </div>
                 </div>

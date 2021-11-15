@@ -2,8 +2,8 @@ import { createContext, Dispatch, FC, SetStateAction, useState } from 'react';
 import { User } from '../../types'
 
 type ContextType={
-    currentUser?: Partial<User>,
-    setCurrentUser: Dispatch<SetStateAction<Partial<User>>>,
+    currentUser?: Partial<User> | undefined,
+    setCurrentUser: Dispatch<SetStateAction<Partial<User | undefined>>>;
 }
 
 const AuthContext = createContext <ContextType>({
@@ -13,7 +13,7 @@ const AuthContext = createContext <ContextType>({
 
 const AuthProvider: FC = ({ children }) => {
 
-    const [currentUser, setCurrentUser]= useState<Partial<User>>({})
+    const [currentUser, setCurrentUser]= useState<Partial<User> | undefined>({})
 
     return (
         <>

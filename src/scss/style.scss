@@ -46,7 +46,7 @@ select{
     box-shadow: $box-shadow;
 }
 
-button{
+.button-style{
     font-family: 'Bellota Text', cursive;
     font-size: 1.2rem;
     background-color: $hover-background;
@@ -64,7 +64,7 @@ button{
     transition-duration: 0.3s;
 }
 
-button:hover{
+.button-style:hover{
 background-color: $secondary;
 color: $color-white;
 transition-duration: 0.3s;
