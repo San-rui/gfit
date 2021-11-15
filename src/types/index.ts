@@ -8,6 +8,7 @@ export type User ={
         weight:string,
         height:string,
         image: FileList | null,
+        sessionToken?: string,
 }
 
 export type DataUser={
@@ -104,7 +105,7 @@ export type Meal={
         breakfast?:string,
         lunch?:string,
         afternoonSnack?:string,
-        diner?: string,
+        dinner?: string,
 }
 
 export type UserWodMeal= {
@@ -116,6 +117,6 @@ export type UserWodMeal= {
                 [name: string]:string
         },
         day?:string,
-        idUser: string | undefined,
+        idUser?: string | undefined,
         id?: string,
 }

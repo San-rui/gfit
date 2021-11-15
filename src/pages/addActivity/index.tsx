@@ -12,7 +12,7 @@ import { AuthContext } from "../../context";
 import './style.scss'
 
 const defaultValues = {
-    day:"",
+    day:"monday",
     level: "",
     id: "",
     time:"",
@@ -29,7 +29,6 @@ const AddActivity :FC= () => {
     const [data, setData]= useState<UserWodMeal>();
     const [idPack, setIdPack] = useState<string | undefined>('');
 
-    const idUser: User = JSON.parse(localStorage.getItem('user') || "");
     const { push } = useHistory();
 
     useEffect ( () => {
@@ -68,7 +67,7 @@ const AddActivity :FC= () => {
                                 description: description
                             },
                             day:inputs.day,
-                            idUser: idUser.id})
+                            idUser: currentUser?.id})
                         }
                     }
                 })
@@ -125,7 +124,7 @@ const AddActivity :FC= () => {
                     </div>
                     <div className='center'>
                         <p>You will burn: <span>{calories} calories</span></p>
-                        <button type="submit">Add</button>
+                        <button type="submit" className="button-style">Add</button>
                     </div>
                 </div>
                 
@@ -147,7 +146,7 @@ const AddActivity :FC= () => {
                                     <option value="monday">Monday</option>
                                     <option value="tuesday">Tuesday</option>
                                     <option value="wednesday">Wednesday</option>
-                                    <option value="thrusday">Thursday</option>
+                                    <option value="thursday">Thursday</option>
                                     <option value="friday">Friday</option>
                                     <option value="saturday">Saturday</option>
                                     <option value="sunday">Sunday</option>

@@ -36,6 +36,22 @@
                 transition-duration: 0.3s;
                 text-decoration: none;
             }
+            .nav-button{
+                display: flex;
+                flex-direction: row;
+                justify-content:center;
+                align-items: center;
+                margin-left: 5rem;
+                color:$color-text;
+                cursor: pointer;
+                transition-duration: 0.3s;
+                text-decoration: none;
+                background-color:transparent;
+                border:none;
+                font-family: 'Bellota Text', cursive;
+                font-size: 1rem;
+            }
+
 
             .icon{
                 font-size:1.5rem;
@@ -55,6 +71,10 @@
 
         li:hover{
             a{
+                color:$hover-background;
+                transition-duration: 0.3s;
+            }
+            .nav-button{
                 color:$hover-background;
                 transition-duration: 0.3s;
             }

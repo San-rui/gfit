@@ -10,7 +10,12 @@ const useAuth = ()  => {
     const [ tokenStorage, setTokenStorage] = useState <string | undefined>(
         localStorage.getItem('user-token') || undefined)
 
+    const [hasUserLoggedIn, setHasUserLoggedIn] = useState<boolean>();
     const { push }= useHistory();
+
+    useEffect ( () => {
+        loginWithToken()
+    },[])
 
     const createUserToken = async (user: User): Promise<string | null> => {
         try {
@@ -53,16 +58,38 @@ const useAuth = ()  => {
                 console.log(e);
                 }
         };
-        const loginWithToken = () => {};
+        const loginWithToken = async () => {
+            let user;
+            try {
+                const response = await api.get("/users.json");
+            
+                /* Tarea de backend */
+                const users: User[] = mapToArray(response.data);
+            
+                if (tokenStorage) {
+                    user = users.find((user) => user.sessionToken === tokenStorage);
+                }
+            
+                if (user) {
+                    setCurrentUser(user);
+                    setHasUserLoggedIn(true);
+                } else {
+                    setHasUserLoggedIn(false);
+                }
+            } catch (e) {
+              // console.log(e);
+            }
+        };
 
         const logout = () => {
             localStorage.removeItem('user-token')
             push('/login')
+            setCurrentUser(undefined)
         };
 
         const signUp = () => {};
 
-    return { login, loginWithToken, logout, signUp  }
+    return { login, loginWithToken, logout, signUp, hasUserLoggedIn  }
 }
 
 export { useAuth }

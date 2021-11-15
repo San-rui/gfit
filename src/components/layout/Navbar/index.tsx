@@ -2,12 +2,15 @@ import { FC, useState } from "react";
 import { Link } from 'react-router-dom';
 
 import logo from '../../../assets/images/logo.png';
+import { useAuth } from "../../../hooks";
 
 import './style.scss'
 
 const Nav: FC = () => {
 
     const [nav, setNav]= useState(false);
+
+    const { logout } = useAuth();
 
     const changeBackground=()=>{
         if(window.scrollY >= 1){
@@ -38,10 +41,10 @@ const Nav: FC = () => {
                         
                     </li>
                     <li>
-                        <Link to="./login">
+                        <button className="nav-button" onClick={logout}>
                             <i className={nav ? "fas fa-sign-out-alt  icon icon-active":"fas fa-sign-out-alt icon"}></i>
                             <p>Sing out</p>
-                        </Link>
+                        </button>
                     </li>
                 </ul>
             </nav>

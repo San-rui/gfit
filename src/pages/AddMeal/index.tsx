@@ -32,7 +32,6 @@ const AddMeal: FC= () => {
     const { currentUser } = useContext(AuthContext);
     const { push } = useHistory();
 
-    console.log("currentUser:" ,currentUser)
 
     //Si ya hay un dato que coincide con el usuario y el dia me guardo el id de ese elemento
     useEffect ( () => {
@@ -120,7 +119,7 @@ const AddMeal: FC= () => {
                         </select>
                     </div>
                     {addImg()}
-                    <button type="submit">Add</button>
+                    <button type="submit" className="button-style">Add</button>
                 </>)
         }
     };
@@ -140,7 +139,7 @@ const AddMeal: FC= () => {
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
                                 <option value="wednesday">Wednesday</option>
-                                <option value="thrusday">Thursday</option>
+                                <option value="thursday">Thursday</option>
                                 <option value="friday">Friday</option>
                                 <option value="saturday">Saturday</option>
                                 <option value="sunday">Sunday</option>
@@ -154,7 +153,7 @@ const AddMeal: FC= () => {
                                 <option value="breakfast">Breakfast</option>
                                 <option value="lunch">Lunch</option>
                                 <option value="afternoonSnack">Afternoon snack</option>
-                                <option value="diner">Diner</option>
+                                <option value="dinner">Dinner</option>
                             </select>
                         </div>
                         <div className="form-line">
