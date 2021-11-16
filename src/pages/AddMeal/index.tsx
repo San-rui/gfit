@@ -127,7 +127,7 @@ const AddMeal: FC= () => {
 
     return (
         <Layout>
-            <div className='add-meal'>
+            <div className='add-meal-card'>
                 <h2 className='title'>Weekly Meal</h2>
                     <div className='meal'>
                         <form action="" onSubmit={handleSubmit}>
