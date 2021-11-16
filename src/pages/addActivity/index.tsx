@@ -134,7 +134,7 @@ const AddActivity :FC= () => {
 
     return (
         <Layout>
-            <div className='add-activity'>
+            <div className='add-activity-card'>
                 <h2 className='title'>Weekly Activity</h2>
                     <div className='sport'>
                         <form action="" onSubmit={handleSubmit}>

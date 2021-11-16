@@ -26,6 +26,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 1rem;
             transition-duration: 0.3s;
         }
     
@@ -75,6 +76,32 @@
                     font-size: 1.2rem;
                     border-bottom: 1px solid $primary;
                     margin-bottom: 0.5rem;
+                }
+
+                .wod-missing{
+                    font-size: 1rem;
+                    color:red;
+                    text-decoration: none;
+                }
+
+                .line{
+                    display: flex;
+                    flex-direction:row;
+                    border-radius: 0.5rem;
+                    padding: 0.2rem;
+                }
+
+                .button-delete-wod{
+                    border:none;
+                    background-color: transparent;
+                    color: $hover-background;
+                    padding: 5px;
+                    display: flex;
+                    align-items: flex-start;
+                }
+
+                .button-delete-wod:active{
+                    color: $primary;
                 }
             }
     

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 
 import { getDataUser, modifyDataUser } from '../../../api/users';
 import { UserWodMeal } from '../../../types';
@@ -61,7 +60,7 @@ const CardFood = () =>{
                 <Link to='/add-meal' className="add-meal">Add weekly meal</Link>
                 <div>
                     <div className="days">
-                        {data && <>
+                        {data && <div className="wrap">
                             <MealsDay data={data} day={"monday"} title={"Monday"}  setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
                             <MealsDay data={data} day={"tuesday"} title={"Tuesday"}  setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
                             <MealsDay data={data} day={"wednesday"} title={"Wednesday"} setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
@@ -69,7 +68,7 @@ const CardFood = () =>{
                             <MealsDay data={data} day={"friday"} title={"Friday"} setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
                             <MealsDay data={data} day={"saturday"} title={"Saturday"} setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
                             <MealsDay data={data} day={"sunday"} title={"Sunday"} setIdmealToDelete={setIdmealToDelete} setTypeMeal={setTypeMeal}/>
-                            </>}
+                            </div>}
                         </div>
                 </div>
             </div>

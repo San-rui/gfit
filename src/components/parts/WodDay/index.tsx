@@ -1,37 +1,60 @@
-import { FC, useContext } from 'react';
+import { FC, useContext, Dispatch, SetStateAction, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context';
 import { UserWodMeal } from '../../../types';
+import { BiTrash, BiCheckCircle } from "react-icons/bi"
 
 type Props={
     data:UserWodMeal[] | undefined, 
     day: string,
+    setIdmealToDelete: Dispatch<SetStateAction<string | undefined>>,
 }
 
 const WodDay : FC <Props> = (Props) =>{
 
     const { currentUser } = useContext(AuthContext);
+    const [refresh, setRefresh] = useState(false)
+
 
     const showData = (data:UserWodMeal[] | undefined, day: string)=>{
         const itemWod = data?.find(item=> item.day===day && item.idUser === currentUser?.id)
+        const colorCheck= refresh? "#FED51C" : "transparent"
 
         for(const i in itemWod?.wod){
-            if(i==="description"){
-                return (<>
-                            <p className="meal-to-eat">{itemWod?.wod["description"]}</p>
-                            <p className="meal-to-eat"><span>Calories burned: </span>{itemWod?.wod["calories"]}</p>
-                        </>
+            if(i==="description" && itemWod?.wod['description']!==''){
+                return (<div className="line" style={{backgroundColor:colorCheck}}>
+                            <div>
+                                <p className="meal-to-eat">{itemWod?.wod["description"]}</p>
+                                <p className="meal-to-eat"><span>Calories burned: </span>{itemWod?.wod["calories"]}</p>
+                            </div>
+                            <div>
+                                <button className="button-delete-wod" onClick={() =>{
+                                    const r = window.confirm("Press a button!");
+                                    if (r == true) {
+                                        Props.setIdmealToDelete(itemWod?.id);
+                                        setRefresh(!refresh)
+                                    }}
+                                }>
+                                    <BiTrash size={18}/>
+                                </button>
+                                <button className="button-delete-wod" onClick={() =>{
+                                    setRefresh(!refresh)    
+                                    }
+                                    
+                                }>
+                                    <BiCheckCircle size={18}/>
+                                </button>
+                            </div>
+                            
+                        </div>
                 )
             }
-        }
-        
-        return (<Link to='/add-activity' className="meal-missing">Add your wod</Link>)
-    
-        
+        }    
+        return (<Link to='/add-activity' className="wod-missing">Add your wod</Link>)
     }
 
     return (
-            <div className="food">
+            <div>
                 {showData(Props.data,Props.day)}
             </div>
     )
