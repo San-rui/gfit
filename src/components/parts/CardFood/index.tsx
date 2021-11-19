@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getDataUser, modifyDataUser } from '../../../api/users';
 import { UserWodMeal } from '../../../types';
-import { MealsDay } from '../index'
+import { CardStatus, MealsDay } from '../index'
 
 import './style.scss';
 
@@ -71,6 +71,7 @@ const CardFood = () =>{
                             </div>}
                         </div>
                 </div>
+                <CardStatus/>
             </div>
     )
 }

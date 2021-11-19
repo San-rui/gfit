@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 import { AuthContext } from '../../../context';
-import { UserWodMeal } from '../../../types';
+import { CheckedMeal, LocalStorageType, UserWodMeal } from '../../../types';
 import { BiTrash, BiCheckCircle } from "react-icons/bi"
 
 type Props={
@@ -16,24 +16,23 @@ type Props={
 }
 
 const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal}) =>{
-    const [refresh, setRefresh] = useState<string>();
+    const [refresh, setRefresh] = useState(false);
     const [checkMeal, setCheckMeal] = useState<string>();
+    const [itemCheckedToArray, setItemCheckedToArray] = useState <CheckedMeal> ({})
+
+    const arrayMealChecked: CheckedMeal[]=[];
 
     const { currentUser } = useContext(AuthContext);
 
     const showData = (data:UserWodMeal[] | undefined, mealdata:string, day: string)=>{
-        
-        
-        const itemDay = data?.find(item=> item.day===day && item.idUser === currentUser?.id)
-        
-        const myMeals= itemDay?.meal
 
-        
+        const itemDay = data?.find(item=> item.day===day && item.idUser === currentUser?.id)
+        const myMeals= itemDay?.meal;
 
         for(const i in myMeals){
-            const colorCheck= refresh===itemDay?.id && checkMeal === mealdata? "#FED51C" : "transparent"
+            const colorCheck= refresh===true && checkMeal === mealdata? "#FED51C" : "transparent"
             if(i===mealdata && myMeals[mealdata]!== ''){
-                console.log(myMeals)
+                
                 return (<div className="line-food" style={{backgroundColor:colorCheck}}>
                             <p className="meal-to-eat">{myMeals[mealdata]}</p>
                             <div>
@@ -43,14 +42,20 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
                                     if (r == true) {
                                         setIdmealToDelete(itemDay?.id)
                                         setTypeMeal(mealdata)
+                                        
                                     }}
                                 }>
                                     <BiTrash size={18}/>
                                 </button>
                                 <button className="button-delete-food" onClick={() =>{
-                                    setRefresh(itemDay?.id)  
+                                    setRefresh(!refresh)  
                                     setCheckMeal(mealdata)
+                                    const itemChecked={
+                                        type: mealdata,
+                                        meal: myMeals[mealdata]
                                     }
+                                    setItemCheckedToArray(itemChecked)    
+                                }
                                     
                                 }>
                                     <BiCheckCircle size={18}/>
@@ -63,6 +68,14 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
         }
         return (<Link to='/add-meal' className="meal-missing">Add your {mealdata}</Link>)
     }
+
+    
+
+    useEffect ( () => {
+        arrayMealChecked.push(itemCheckedToArray)                              
+        //console.log("el array",arrayMealChecked)                             
+        localStorage.setItem('meal-checked',  JSON.stringify(arrayMealChecked))
+    },[checkMeal])
 
 
     return (

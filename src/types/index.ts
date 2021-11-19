@@ -120,3 +120,10 @@ export type UserWodMeal= {
         idUser?: string | undefined,
         id?: string,
 }
+
+export type CheckedMeal={
+        type?: string,
+        meal?: string
+}
+
+export type LocalStorageType = CheckedMeal[]
