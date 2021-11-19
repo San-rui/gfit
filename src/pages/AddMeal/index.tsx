@@ -1,5 +1,5 @@
 import { FC, FormEvent,  useState, useEffect, useContext  } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory , useParams } from 'react-router-dom';
 
 import {Layout } from '../../components/layout'
 import { Branded, UserWodMeal } from '../../types';
@@ -21,6 +21,11 @@ const defaultValues = {
     chosenMeal:"",
 };
 
+type ParamsType = {
+    day: string,
+    type: string
+};
+
 const AddMeal: FC= () => {
 
     const [meal, setMeal]= useState<Branded[]>();
@@ -32,6 +37,7 @@ const AddMeal: FC= () => {
     const { currentUser } = useContext(AuthContext);
     const { push } = useHistory();
 
+    const { day, type} = useParams<ParamsType>();
 
     //Si ya hay un dato que coincide con el usuario y el dia me guardo el id de ese elemento
     useEffect ( () => {
@@ -133,7 +139,7 @@ const AddMeal: FC= () => {
                         <form action="" onSubmit={handleSubmit}>
                         <div className="form-line">
                             <label>Choose day</label>
-                            <select name="day-selected" id="day-selected" value={inputs.day} onChange={e =>{ 
+                            <select name="day-selected" id="day-selected" value={day? day: inputs.day} onChange={e =>{ 
                             setInputs({ ...inputs, day: e.target.value }) 
                         } } required>
                                 <option value="monday">Monday</option>
@@ -147,7 +153,7 @@ const AddMeal: FC= () => {
                         </div>
                         <div className="form-line">
                             <label>Type of meal</label>
-                            <select name="day-selected" id="day-selected" value={inputs.typeMeal} onChange={e =>{ 
+                            <select name="day-selected" id="day-selected" value={type? type: inputs.typeMeal} onChange={e =>{ 
                             setInputs({ ...inputs, typeMeal: e.target.value })
                         } } required>
                                 <option value="breakfast">Breakfast</option>

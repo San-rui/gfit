@@ -22,7 +22,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/users/add" component={SingUp} />
 
-          <Route path="/add-meal" component={AddMeal} exact />
+          <Route path="/add-meal/:day/:type" component={AddMeal} exact />
           <Route path="/add-activity" component={addActivity} exact />
           <Route path="/users" component={Users} exact />
           <Route path="/profile" component={Profile}/>
