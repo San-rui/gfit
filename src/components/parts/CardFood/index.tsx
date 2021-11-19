@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 import { getDataUser, modifyDataUser } from '../../../api/users';
 import { UserWodMeal } from '../../../types';
@@ -13,6 +13,8 @@ const CardFood = () =>{
     const [data, setData]= useState<UserWodMeal[]>();
     const [idmealToDelete, setIdmealToDelete]= useState<string | undefined>();
     const [typeMeal, setTypeMeal]= useState<string>('');
+
+    
 
     useEffect ( () => {
 
@@ -57,7 +59,7 @@ const CardFood = () =>{
     return (
             <div className='box-meal'>
                 <h2 className={title ? 'title-food title-scroll': 'title-food'}>Weekly Meal</h2>
-                <Link to='/add-meal' className="add-meal">Add weekly meal</Link>
+                <Link to='/add-meal/monday/breakfast' className="add-meal">Add weekly meal</Link>
                 <div>
                     <div className="days">
                         {data && <div className="wrap">

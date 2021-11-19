@@ -17,8 +17,6 @@ const WithAuth: withAuthenticationFn = (Component) => {
 
     const { hasUserLoggedIn } = useAuth();
 
-    console.log(hasUserLoggedIn);
-
     if (hasUserLoggedIn === undefined) return <Loading />;
 
     if (hasUserLoggedIn && publicRoutes.includes(location.pathname)) push("/");

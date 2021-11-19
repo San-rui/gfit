@@ -13,8 +13,6 @@ import './style.scss'
 const Profile: FC= () =>{
 
     const { currentUser } = useContext(AuthContext);
-
-    console.log(currentUser)
     
     return (
         <Layout>

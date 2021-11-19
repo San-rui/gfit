@@ -20,7 +20,6 @@ const SingUp :FC = () => {
     
     const setDataUser = async (data: UserData) =>  {
         try {
-            console.log(data)
             await signup(data);
             push('/login')
             

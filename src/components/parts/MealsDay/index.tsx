@@ -66,14 +66,14 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
                 )
             }
         }
-        return (<Link to='/add-meal' className="meal-missing">Add your {mealdata}</Link>)
+        return (<Link to={`/add-meal/${itemDay?.day}/${mealdata}`} className="meal-missing">Add your {mealdata}</Link>)
     }
 
     
 
     useEffect ( () => {
         arrayMealChecked.push(itemCheckedToArray)                              
-        //console.log("el array",arrayMealChecked)                             
+        
         localStorage.setItem('meal-checked',  JSON.stringify(arrayMealChecked))
     },[checkMeal])
 
