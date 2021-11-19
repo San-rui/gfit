@@ -13,14 +13,6 @@ import { AuthContext } from "../../context";
 import './style.scss';
 
 
-
-const defaultValues = {
-    day:"monday",
-    search: "",
-    typeMeal: "breakfast",
-    chosenMeal:"",
-};
-
 type ParamsType = {
     day: string,
     type: string
@@ -28,42 +20,57 @@ type ParamsType = {
 
 const AddMeal: FC= () => {
 
+    const { day, type} = useParams<ParamsType>();
+
     const [meal, setMeal]= useState<Branded[]>();
     const [src, setSrc]=useState<string | undefined>();
-    const [inputs, setInputs]=useState(defaultValues);
+    const [inputs, setInputs]=useState({
+        day:day,
+        search: "",
+        typeMeal: type,
+        chosenMeal:"",
+    });
     const [data, setData]= useState<UserWodMeal>();
     const [idPack, setIdPack] = useState<string | undefined>('');
 
     const { currentUser } = useContext(AuthContext);
     const { push } = useHistory();
 
-    const { day, type} = useParams<ParamsType>();
 
     //Si ya hay un dato que coincide con el usuario y el dia me guardo el id de ese elemento
     useEffect ( () => {
         if(inputs.day!==''){
             getDataUser().then(response=>{
-                for(const item of response){
-                    if(item.idUser===currentUser?.id && item.day===inputs.day){
-                        setIdPack(item.id)
 
-                        const itemAux = {
-                            ...item,
-                            meal: {
-                                ...item.meal,
+                if (response.length===0){
+                            !idPack && setData({meal:{
                                 [inputs.typeMeal]: inputs.chosenMeal
+                            },
+                            day:inputs.day,
+                            idUser: currentUser?.id})
+                            console.log(data)
+                } else{
+
+                    for(const item of response){
+                        if(item.idUser===currentUser?.id && item.day===inputs.day){
+                            setIdPack(item.id)
+                            const itemAux = {
+                                ...item,
+                                meal: {
+                                    ...item.meal,
+                                    [inputs.typeMeal]: inputs.chosenMeal
+                                }
                             }
+                            setData(itemAux)
+                            break
+    
+                        } else{
+                            !idPack && setData({meal:{
+                                [inputs.typeMeal]: inputs.chosenMeal
+                            },
+                            day:inputs.day,
+                            idUser: currentUser?.id})
                         }
-                        setData(itemAux)
-                        break
-
-                    } else{
-
-                        !idPack && setData({meal:{
-                            [inputs.typeMeal]: inputs.chosenMeal
-                        },
-                        day:inputs.day,
-                        idUser: currentUser?.id})
                     }
                 }
             })
@@ -130,7 +137,6 @@ const AddMeal: FC= () => {
         }
     };
 
-
     return (
         <Layout>
             <div className='add-meal-card'>
@@ -139,7 +145,7 @@ const AddMeal: FC= () => {
                         <form action="" onSubmit={handleSubmit}>
                         <div className="form-line">
                             <label>Choose day</label>
-                            <select name="day-selected" id="day-selected" value={day? day: inputs.day} onChange={e =>{ 
+                            <select name="day-selected" id="day-selected" value={inputs.day} onChange={e =>{ 
                             setInputs({ ...inputs, day: e.target.value }) 
                         } } required>
                                 <option value="monday">Monday</option>
@@ -153,7 +159,7 @@ const AddMeal: FC= () => {
                         </div>
                         <div className="form-line">
                             <label>Type of meal</label>
-                            <select name="day-selected" id="day-selected" value={type? type: inputs.typeMeal} onChange={e =>{ 
+                            <select name="day-selected" id="day-selected" value={inputs.typeMeal} onChange={e =>{ 
                             setInputs({ ...inputs, typeMeal: e.target.value })
                         } } required>
                                 <option value="breakfast">Breakfast</option>

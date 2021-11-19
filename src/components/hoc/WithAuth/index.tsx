@@ -14,9 +14,10 @@ type withAuthenticationFn = (Component: FC) => FC;
 const WithAuth: withAuthenticationFn = (Component) => {
     const Authenticated: FC = (): JSX.Element | null => {
     const { push, location } = useHistory();
-
+        
     const { hasUserLoggedIn } = useAuth();
-
+    
+    //console.log(hasUserLoggedIn);
     if (hasUserLoggedIn === undefined) return <Loading />;
 
     if (hasUserLoggedIn && publicRoutes.includes(location.pathname)) push("/");

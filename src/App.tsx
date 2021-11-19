@@ -23,7 +23,7 @@ function App() {
           <Route path="/users/add" component={SingUp} />
 
           <Route path="/add-meal/:day/:type" component={AddMeal} exact />
-          <Route path="/add-activity" component={addActivity} exact />
+          <Route path="/add-activity/:day" component={addActivity} exact />
           <Route path="/users" component={Users} exact />
           <Route path="/profile" component={Profile}/>
           <Route path="/" component={Dashboard} />

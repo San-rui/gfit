@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, FormEvent, useContext} from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {trainingApi, caloriesBurned} from './api'
 import { getDataUser, modifyDataUser, setDataUser } from '../../api'
@@ -18,9 +18,20 @@ const defaultValues = {
     time:"",
 };
 
+type ParamsType = {
+    day: string,
+};
+
 const AddActivity :FC= () => {
 
-    const [inputs, setInputs] = useState (defaultValues);
+    const { day} = useParams<ParamsType>();
+
+    const [inputs, setInputs] = useState ({
+        day:day,
+        level: "",
+        id: "",
+        time:"",
+    });
     const [training, setTraining]= useState<Activity[] | undefined>();
     const [calories, setCalories]=useState(0)
     const [description, setDescription]= useState<string | undefined>('')

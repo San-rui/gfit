@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Layout } from '../../components/layout'
 import { CardFood } from '../../components/parts';
-import { CardStatus} from '../../components/parts';
 import { CardSport } from '../../components/parts';
 import { WithAuth} from '../../components/hoc';
 
@@ -12,7 +11,7 @@ const Dashboard: FC= () => {
     return (
         <Layout>      
             <div className="main-primary">
-                <h2>My dashboard</h2>
+                <h2 className="title-dashboard">My dashboard</h2>
                 <div>
                     <section className="card-food">
                         <CardFood/>

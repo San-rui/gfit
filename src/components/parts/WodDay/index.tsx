@@ -50,7 +50,7 @@ const WodDay : FC <Props> = (Props) =>{
                 )
             }
         }    
-        return (<Link to='/add-activity' className="wod-missing">Add your wod</Link>)
+        return (<Link to={`/add-activity/${day}`} className="wod-missing">Add your wod</Link>)
     }
 
     return (

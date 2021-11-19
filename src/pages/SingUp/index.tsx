@@ -101,20 +101,11 @@ const SingUp :FC = () => {
                     />
                     {errors.height && <p>This is required</p>}
                 </div>
-                <div className='container-input-select'>
-                    <label htmlFor="image">Photo</label>
-                    <input 
-                        id="image"  
-                        type="file"  
-                        accept="image/png, image/jpeg"
-                        {...register("image", )}
-                    />
-                </div>
-                <button type="submit">Sing up</button>
+                <button type="submit" className='button-style'>Sing up</button>
             </form>
         </div>
         </Layout>
     )
 }
 
-export default WithAuth(SingUp)
+export default SingUp
