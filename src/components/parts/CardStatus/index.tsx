@@ -1,30 +1,47 @@
-import { FC } from 'react'
-import { LocalStorageType } from '../../../types'
+import { FC, useEffect, useState } from 'react'
+import { deleteFinishedMeal, getDataFinished } from '../../../api/users'
+import { FinishedMeal } from '../../../types'
 import './style.scss'
 
 const CardStatus:FC = () =>{
 
-    const showmealFinished = () =>{
+    const [finishedMeal, setFinishedMeal] = useState<FinishedMeal[] | undefined>();
+    const [deleteF, setDelete]= useState(false);
 
-        // let mealFinished = JSON.parse(localStorage.getItem('meal-checked'))
-        // console.log("el storage",mealFinished)
-        // mealFinished.map((item:any) =>{
-        //     return(
-        //         <>
-        //             <h5>{item.type}</h5>
-        //             <p>{item.meal}</p>
-        //         </>
-        //     )
-        // })
-        return(<p>test</p>)
+    useEffect ( () => {
+        getDataFinished().then(response=>setFinishedMeal(response))
+        showmealFinished()
+    },[finishedMeal])
+
+    const showmealFinished = () =>{
+        const array:any=[]
+
+        finishedMeal?.map(item=>{
+            array.push(<div className="card-finished-meal">
+                            <h4 className="title-day">{item.day}</h4>
+                            <h5>{item.type}</h5>
+                            <p className="text-meal">{item.meal}</p>
+                        </div>
+            )
+        })
+        return array
     }
+
+    useEffect ( () => {
+        if(deleteF===true){
+            deleteFinishedMeal()
+        }
+        
+    },[deleteF])
     
     return (
         <div className="card-status">
-            <div className="status">
-                <h2>Finalizada</h2>
-                <div>{showmealFinished()}</div>
+            <h2 className="finished-title">Finished</h2>
+            <div className="container">
+                <div className="container-card">{showmealFinished()}</div>
+                <button className="empty-button" onClick={()=>setDelete(true)}>EMPTY</button>
             </div>
+            
         </div>
     )
 }

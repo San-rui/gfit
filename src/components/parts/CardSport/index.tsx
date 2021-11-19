@@ -31,7 +31,7 @@ const CardSport = () =>{
     
     useEffect ( ()=>{
         const moveTitle=()=>{
-            if(window.scrollY >= 450){
+            if(window.scrollY >= 1000){
                 setTitle(true);
             } else{
                 setTitle(false);
@@ -54,7 +54,7 @@ const CardSport = () =>{
     return (
         <div className="box-sport">
             <h2 className={title ? 'title-sport title-scroll': 'title-sport'}>Weekly Workout</h2>
-            <Link to='/add-activity' className="add-activity">Add activity</Link>
+            <Link to='/add-activity/monday' className="add-activity">Add activity</Link>
                 <div>
                     <div className="days">
                         <div className="sport">

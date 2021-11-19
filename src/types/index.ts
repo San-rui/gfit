@@ -126,4 +126,9 @@ export type CheckedMeal={
         meal?: string
 }
 
-export type LocalStorageType = CheckedMeal[]
+export type FinishedMeal = {
+        day?: string,
+        type?: string,
+        meal?: string,
+        userId?: string
+}

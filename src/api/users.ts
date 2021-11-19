@@ -1,4 +1,4 @@
-import { User, UserWodMeal  } from "../types";
+import { FinishedMeal, User, UserWodMeal  } from "../types";
 import { api } from '../utils';
 
 
@@ -42,4 +42,23 @@ const modifyDataUser = async (query:string | undefined, data: UserWodMeal | unde
 }
 
 export { modifyDataUser }
+
+const setDataFinished = async (data: FinishedMeal | undefined) =>{
+    
+    await api.post('/user-meal-activity-finished.json', data);
+}
+export { setDataFinished }
+
+const getDataFinished = async (): Promise<FinishedMeal[]>  =>{
+    const response =  await api.get('/user-meal-activity-finished.json');
+    return mapToArray(response.data)
+};
+export { getDataFinished }; 
+
+const deleteFinishedMeal = async () =>{
+    
+    await api.delete('/user-meal-activity-finished.json');
+}
+
+export { deleteFinishedMeal }
 
