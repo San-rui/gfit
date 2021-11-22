@@ -22,11 +22,6 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
 
     const { currentUser } = useContext(AuthContext);
 
-    console.log(refresh)
-
-    useEffect ( () => {
-        renderCard() 
-    }, [refresh])
 
     const showData = (data:UserWodMeal[] | undefined, mealdata:string, day: string)=>{
 
@@ -52,7 +47,7 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
                                     <BiTrash size={18}/>
                                 </button>
                                 <button className="button-delete-food" onClick={() =>{
-                                    setMealFinished({day:day, type: mealdata, meal: myMeals[mealdata], userId: currentUser?.id})
+                                    setMealFinished({day:day, type: mealdata, mealOrwod: myMeals[mealdata], userId: currentUser?.id})
                                 }
                                     
                                 }>
@@ -67,9 +62,8 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
         return (<Link to={`/add-meal/${day}/${mealdata}`} className="meal-missing">Add your {mealdata}</Link>)
     }
 
-    const renderCard = () => {
-        return (
-            <div className="food">
+    return (
+        <div className="food">
                 <h4>{title}</h4>
                 <div className="line">
                     <h5>Breakfast</h5>
@@ -88,13 +82,6 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
                     {showData(data, "dinner" , day)}
                 </div>
             </div>
-        )
-    }
-
-    return (
-        <>
-        {renderCard()}
-        </>
     )
 }
 

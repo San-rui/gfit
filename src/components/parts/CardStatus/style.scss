@@ -8,6 +8,16 @@
     align-items: center;
     margin-top: 1rem;
 
+    .no-items{
+        display: flex;
+        flex-direction:row;
+
+        .no-item-title{
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+    }
+
 
     .finished-title{
         width: 30%;
@@ -74,7 +84,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 1rem;
+            margin-top: 1rem;
             transition-duration: 0.3s;
         }
     
