@@ -43,21 +43,21 @@ const modifyDataUser = async (query:string | undefined, data: UserWodMeal | unde
 
 export { modifyDataUser }
 
-const setDataFinished = async (data: FinishedMeal | undefined) =>{
+const setDataFinished = async (item:string, data: FinishedMeal | undefined) =>{
     
-    await api.post('/user-meal-activity-finished.json', data);
+    await api.post(`/user-${item}-finished.json`, data);
 }
 export { setDataFinished }
 
-const getDataFinished = async (): Promise<FinishedMeal[]>  =>{
-    const response =  await api.get('/user-meal-activity-finished.json');
+const getDataFinished = async (item:string): Promise<FinishedMeal[]>  =>{
+    const response =  await api.get(`/user-${item}-finished.json`);
     return mapToArray(response.data)
 };
 export { getDataFinished }; 
 
-const deleteFinishedMeal = async () =>{
+const deleteFinishedMeal = async (item:string) =>{
     
-    await api.delete('/user-meal-activity-finished.json');
+    await api.delete(`/user-${item}-finished.json`);
 }
 
 export { deleteFinishedMeal }

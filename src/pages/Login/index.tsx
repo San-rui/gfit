@@ -68,8 +68,9 @@ const Login :FC= () => {
                         />
                     </div>
                     <button type="submit">Send</button>
+                    <Link className="link" to="./users/add">Sing up</Link>
                 </form>
-                <Link to="./users/add">Sing up</Link>
+                
             </div>
         </Layout>
     )

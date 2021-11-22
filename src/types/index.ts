@@ -129,6 +129,8 @@ export type CheckedMeal={
 export type FinishedMeal = {
         day?: string,
         type?: string,
-        meal?: string,
+        mealOrwod?: string,
         userId?: string
 }
+
+

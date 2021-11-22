@@ -60,17 +60,19 @@
     
         .days{
             display: flex;
-            justify-content:space-between;
+            flex-wrap: wrap;
             border-radius: 0.5rem;
+            justify-content: center;
             padding: 1% 0;
     
             .sport{
-                width: 13.5%;
+                width: 10rem;
                 background-color:$color-white;
                 color:$color-text;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 border-radius: 0.5rem;
                 padding: 0.5rem;
+                margin: 1rem;
         
                 h4{
                     text-align: center;

@@ -3,14 +3,15 @@
 
 
 .main-login{
-    height:100%;
+    height:100vh;
     display: flex;
     flex-direction:column;
     justify-content:center;
-    align-self: center;
-    padding: 1.5rem;
+    align-items: center;
     background-image: url('https://images.pexels.com/photos/6740059/pexels-photo-6740059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-size: cover;
+    padding:1rem;
+
 
     form{
         width: 100%;
@@ -18,15 +19,17 @@
         flex-direction:column;
         justify-content:center;
         align-items: center;
-        background-color: $background-color;
+        background-color: #ffffff10;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter:blur(12px);
         padding:1.5rem;
         border-radius: 1rem;
         box-shadow:$box-shadow;
         max-width: 500px;
-        margin: auto;
+
 
         .logo{
-            width: 100%;
+            width: 70%;
             justify-self: center;
         }
 
@@ -36,7 +39,7 @@
             justify-content:center;
             h2{
                 font-size: 2rem;
-                color: $color-text;
+                color: $color-white;
             }
             .icon{
                 font-size: 2rem;
@@ -51,7 +54,7 @@
             width: 100%;
             label{
                 font-size: 1.2rem;
-                color: $color-text;
+                color: $color-white;
             }
         
             input{
@@ -96,11 +99,11 @@
         }
     }
     
-    a{
+    .link{
         font-size: 1.2rem;
         text-decoration: none;
         text-align: center;
         margin-top:1rem;
-        color: $primary;
+        color: $color-white;
     }
 }

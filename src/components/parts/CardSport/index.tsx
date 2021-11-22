@@ -1,17 +1,37 @@
 import './style.scss'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../../../context';
+
 import { Link } from 'react-router-dom';
-import { UserWodMeal } from '../../../types';
-import { WodDay} from '../index'
+import { FinishedMeal, UserWodMeal } from '../../../types';
+import { CardStatus, WodDay} from '../index'
 import { getDataUser, modifyDataUser } from '../../../api';
+import { getDataFinished, setDataFinished } from '../../../api/users';
 
 
 const CardSport = () =>{
 
     const [title, setTitle]= useState(false);
-    const [data, setData]= useState<UserWodMeal[]>();
+    const [activityFinished, setAactivityFinished] = useState<FinishedMeal | undefined>();
     const [idmealToDelete, setIdmealToDelete]= useState<string | undefined>();
+
+    const { data, setData } = useContext(AuthContext);
+
+    useEffect ( () => {
+        if(activityFinished){
+            
+            getDataFinished("activity").then(response=>{ 
+            const array = response.filter((item)=>(item.day===activityFinished.day && item.userId===activityFinished.userId))
+
+            if(array.length==0){
+                setDataFinished("activity", activityFinished)
+            }
+        })
+
+        }
+        
+    }, [activityFinished])
 
     useEffect ( () => {
         if(idmealToDelete!== undefined){
@@ -59,34 +79,35 @@ const CardSport = () =>{
                     <div className="days">
                         <div className="sport">
                             <h4>Monday</h4>
-                            <WodDay data={data} day={"monday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"monday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Tuesday</h4>
-                            <WodDay data={data} day={"tuesday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"tuesday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Wednesday</h4>
-                            <WodDay data={data} day={"wednesday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"wednesday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Thursday</h4>       
-                            <WodDay data={data} day={"thursday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"thursday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Friday</h4>
-                            <WodDay data={data} day={"friday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"friday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Saturday</h4>
-                            <WodDay data={data} day={"saturday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"saturday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                         <div className="sport">
                             <h4>Sunday</h4>
-                            <WodDay data={data} day={"sunday"} setIdmealToDelete={setIdmealToDelete}/>
+                            <WodDay data={data} day={"sunday"} setIdmealToDelete={setIdmealToDelete} setAactivityFinished={setAactivityFinished}/>
                         </div>
                     </div>
                 </div>
+                <CardStatus typeItem={"activity"}/>
         </div>
     )
 
