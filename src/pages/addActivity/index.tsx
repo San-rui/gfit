@@ -3,20 +3,13 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import {trainingApi, caloriesBurned} from './api'
 import { getDataUser, modifyDataUser, setDataUser } from '../../api'
-import { Activity, User, UserWodMeal} from '../../types'
+import { Activity, UserWodMeal} from '../../types'
 import { Layout } from '../../components/layout';
 import { WithAuth} from '../../components/hoc';
 
 import { AuthContext } from "../../context";
 
 import './style.scss'
-
-const defaultValues = {
-    day:"monday",
-    level: "",
-    id: "",
-    time:"",
-};
 
 type ParamsType = {
     day: string,

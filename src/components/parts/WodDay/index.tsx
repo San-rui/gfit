@@ -1,4 +1,4 @@
-import { FC, useContext, Dispatch, SetStateAction, useEffect, useState} from 'react';
+import { FC, useContext, Dispatch, SetStateAction, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context';
 import { FinishedMeal, UserWodMeal } from '../../../types';
@@ -30,7 +30,7 @@ const WodDay : FC <Props> = (Props) =>{
                             <div>
                                 <button className="button-delete-wod" onClick={() =>{
                                     const r = window.confirm("Press a button!");
-                                    if (r == true) {
+                                    if (r === true) {
                                         Props.setIdmealToDelete(itemWod?.id);
                                         setRefresh(!refresh)
                                     }}

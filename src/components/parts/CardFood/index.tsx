@@ -3,7 +3,7 @@ import { Link} from 'react-router-dom';
 
 import { getDataFinished, getDataUser, modifyDataUser, setDataFinished } from '../../../api/users';
 import { AuthContext } from '../../../context';
-import { FinishedMeal } from '../../../types';
+import { FinishedMeal, UserWodMeal} from '../../../types';
 import { CardStatus, MealsDay } from '../index'
 
 import './style.scss';
@@ -26,7 +26,7 @@ const CardFood = () =>{
             getDataFinished("meal").then(response=>{
             const array = response.filter((item)=>(item.day===mealFinished.day && item.type===mealFinished.type && item.userId===mealFinished.userId))
 
-            if(array.length==0){
+            if(array.length===0){
                 setDataFinished("meal", mealFinished)
             }
         })
@@ -38,6 +38,14 @@ const CardFood = () =>{
 
     useEffect ( () => {
 
+        const remove = async(item:string, aux :UserWodMeal ) =>{
+            await modifyDataUser(item, aux)
+            getDataUser().then(response=>{
+                setData(response)
+                renderCards()
+            })
+        }
+
         if(idmealToDelete!== undefined){
             const item= data?.find(item => item.id === idmealToDelete)
         
@@ -48,8 +56,8 @@ const CardFood = () =>{
                     [typeMeal]: ''
                 }
             }
-            console.log("esto en q lugar paso")
-            modifyDataUser(idmealToDelete, itemAux)
+
+            remove(idmealToDelete, itemAux)
         }
 
     }, [idmealToDelete])
@@ -71,13 +79,7 @@ const CardFood = () =>{
         }
     }, [title]) 
 
-    useEffect ( () => {
-            getDataUser().then(response=>{
-            setData(response)
-            renderCards()
-            })
-            
-    }, [refresh])
+
 
     const renderCards = () =>{
         return(
