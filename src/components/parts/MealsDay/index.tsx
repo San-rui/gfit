@@ -1,5 +1,5 @@
 
-import {  Dispatch, FC, useContext, useState, SetStateAction, useEffect } from 'react';
+import {  Dispatch, FC, useContext, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -38,7 +38,7 @@ const MealsDay : FC <Props> = ({data, day, title, setIdmealToDelete, setTypeMeal
                                 <button className="button-delete-food" onClick={() =>{
                                     
                                     const r = window.confirm("Press a button!");
-                                    if (r == true) {
+                                    if (r === true) {
                                         setIdmealToDelete(itemDay?.id)
                                         setTypeMeal(mealdata)
                                         setRefresh(!refresh) 

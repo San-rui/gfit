@@ -24,7 +24,7 @@ const CardSport = () =>{
             getDataFinished("activity").then(response=>{ 
             const array = response.filter((item)=>(item.day===activityFinished.day && item.userId===activityFinished.userId))
 
-            if(array.length==0){
+            if(array.length===0){
                 setDataFinished("activity", activityFinished)
             }
         })
@@ -34,6 +34,14 @@ const CardSport = () =>{
     }, [activityFinished])
 
     useEffect ( () => {
+
+        const remove = async(item:string, aux :UserWodMeal) =>{
+            await modifyDataUser(item, aux)
+            getDataUser().then(response=>{
+                setData(response)
+            })
+        }
+
         if(idmealToDelete!== undefined){
             const item= data?.find(item => item.id === idmealToDelete)
         
@@ -44,7 +52,7 @@ const CardSport = () =>{
                     description: ''
                 }
             }
-            modifyDataUser(idmealToDelete, itemAux)
+            remove(idmealToDelete, itemAux)
         }
 
     }, [idmealToDelete])
@@ -69,7 +77,7 @@ const CardSport = () =>{
         getDataUser().then(response=>{
         setData(response)
         })
-}, [idmealToDelete])
+    }, [idmealToDelete])
 
     return (
         <div className="box-sport">
